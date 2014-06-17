@@ -6,10 +6,10 @@ import java.util.Set;
 import com.pracas.domain.model.Categoria;
 import com.pracas.domain.model.Jugador;
 import com.pracas.domain.model.Partida;
-import com.pracas.exceptions.NoCategoriesException;
-import com.pracas.exceptions.UserIsNotPlayerException;
-import com.pracas.exceptions.UsernameNotExistsException;
-import com.pracas.exceptions.WrongPasswordException;
+import com.pracas.exception.NoCategoriesException;
+import com.pracas.exception.UserIsNotPlayerException;
+import com.pracas.exception.UsernameNotExistsException;
+import com.pracas.exception.WrongPasswordException;
 
 import transaction.TxConsultarCategories;
 import transaction.TxLogin;

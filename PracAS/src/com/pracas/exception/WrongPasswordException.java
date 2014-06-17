@@ -1,4 +1,4 @@
-package com.pracas.exceptions;
+package com.pracas.exception;
 
 public class WrongPasswordException extends Exception {
 

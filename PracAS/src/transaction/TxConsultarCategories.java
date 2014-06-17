@@ -6,7 +6,7 @@ import java.util.Set;
 import com.pracas.domain.controller.DataFactory;
 import com.pracas.domain.controller.ICtrlCategoria;
 import com.pracas.domain.model.Categoria;
-import com.pracas.exceptions.NoCategoriesException;
+import com.pracas.exception.NoCategoriesException;
 
 public class TxConsultarCategories {
 

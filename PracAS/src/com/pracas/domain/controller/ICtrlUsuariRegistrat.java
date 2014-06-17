@@ -3,7 +3,7 @@ package com.pracas.domain.controller;
 import java.util.Set;
 
 import com.pracas.domain.model.UsuariRegistrat;
-import com.pracas.exceptions.UsernameNotExistsException;
+import com.pracas.exception.UsernameNotExistsException;
 
 public interface ICtrlUsuariRegistrat {
 	

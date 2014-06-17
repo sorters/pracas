@@ -2,8 +2,8 @@ package transaction;
 import com.pracas.domain.controller.DataFactory;
 import com.pracas.domain.controller.ICtrlUsuariRegistrat;
 import com.pracas.domain.model.UsuariRegistrat;
-import com.pracas.exceptions.UsernameNotExistsException;
-import com.pracas.exceptions.WrongPasswordException;
+import com.pracas.exception.UsernameNotExistsException;
+import com.pracas.exception.WrongPasswordException;
 
 public class TxLogin {
 	/* wat */

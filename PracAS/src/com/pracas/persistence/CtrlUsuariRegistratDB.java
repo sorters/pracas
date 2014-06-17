@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import com.pracas.domain.controller.ICtrlUsuariRegistrat;
 import com.pracas.domain.model.Administrador;
 import com.pracas.domain.model.UsuariRegistrat;
-import com.pracas.exceptions.UsernameNotExistsException;
+import com.pracas.exception.UsernameNotExistsException;
 
 public class CtrlUsuariRegistratDB implements ICtrlUsuariRegistrat {
 
