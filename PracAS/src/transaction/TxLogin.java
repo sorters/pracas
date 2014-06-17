@@ -1,5 +1,5 @@
 package transaction;
-import com.pracas.domain.controller.CtrlDataFactory;
+import com.pracas.domain.controller.DataFactory;
 import com.pracas.domain.controller.ICtrlUsuariRegistrat;
 import com.pracas.domain.model.UsuariRegistrat;
 import com.pracas.exceptions.UsernameNotExistsException;
@@ -17,7 +17,7 @@ public class TxLogin {
 	}
 
 	public void executar() throws UsernameNotExistsException, WrongPasswordException {
-		ICtrlUsuariRegistrat icur = CtrlDataFactory.getInstance().getCtrlUsuariRegistrat();
+		ICtrlUsuariRegistrat icur = DataFactory.getInstance().getCtrlUsuariRegistrat();
 		UsuariRegistrat usuari = icur.getUsuariRegistrat(userN);
 		if (!usuari.checkPassword(passwd)) {
 			throw new WrongPasswordException();

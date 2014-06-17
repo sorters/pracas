@@ -9,19 +9,18 @@ import com.pracas.persistence.CtrlParaulaDB;
 import com.pracas.persistence.CtrlPartidaDB;
 import com.pracas.persistence.CtrlUsuariRegistratDB;
 
-public class CtrlDataFactory {
+public class DataFactory {
 
-	private static CtrlDataFactory ctrlDataFactory = null;
+	private static DataFactory ctrlDataFactory = null;
 	
 	// els tenim tots a null i retornem on demand havent creat?
 	// o retornem sempre un de nou?
 	
-	private CtrlDataFactory(){};
+	private DataFactory(){};
 	
-	public static CtrlDataFactory getInstance() {
-		if (ctrlDataFactory == null) {
-			ctrlDataFactory = new CtrlDataFactory();
-		}
+	public static DataFactory getInstance() {
+		if (ctrlDataFactory == null)
+			ctrlDataFactory = new DataFactory();
 		return ctrlDataFactory;
 	}
 	
