@@ -7,6 +7,10 @@ public class UsuariRegistrat {
 	private String username;
 	private String pwd;
 	
+	public boolean checkPassword(String password) {
+		return pwd.equals(password);
+	}
+	
 	public String getNom() {
 		return nom;
 	}
