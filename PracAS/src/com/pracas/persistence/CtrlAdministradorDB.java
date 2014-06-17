@@ -1,7 +1,5 @@
 package com.pracas.persistence;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Session;
@@ -19,11 +17,12 @@ public class CtrlAdministradorDB implements ICtrlAdministrador {
 
 	@Override
 	public Set<Administrador> getAll() {
-		Session s = PersistenceSessionFactory.getInstance().getSession();
-		List list = s.createCriteria(Administrador.class).list();
-		List<Administrador> resultList = list;
-		return new HashSet<Administrador>(resultList);
-		// TODO wat???
+		/*Session s = PersistenceSessionFactory.getInstance().getSession();
+		//List list = 
+		//List<Administrador> resultList = list;
+		return new HashSet<Administrador>(s.createCriteria(Administrador.class).list());
+		// TODO wat???*/
+		return null;
 	}
 	
 }
