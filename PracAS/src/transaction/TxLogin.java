@@ -3,7 +3,7 @@ import com.pracas.domain.controller.CtrlDataFactory;
 import com.pracas.domain.controller.ICtrlUsuariRegistrat;
 
 public class TxLogin {
-	/**/
+	/* wat */
 	private String userN;
 	private String passwd;
 	
