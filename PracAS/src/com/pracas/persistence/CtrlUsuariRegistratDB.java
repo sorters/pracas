@@ -15,7 +15,9 @@ public class CtrlUsuariRegistratDB implements ICtrlUsuariRegistrat {
 	@Override
 	public UsuariRegistrat getUsuariRegistrat(String username) throws UsernameNotExistsException {
 		Session s = PersistenceSessionFactory.getInstance().getSession();
+		s.beginTransaction();
 		UsuariRegistrat result = (UsuariRegistrat)s.get(UsuariRegistrat.class, username);
+		s.close();
 		if (result == null) {
 			throw new UsernameNotExistsException(MessageFormat.format("Username {0} does not exist in database.", username));
 		}
