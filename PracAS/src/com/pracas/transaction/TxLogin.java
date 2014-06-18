@@ -1,4 +1,4 @@
-package transaction;
+package com.pracas.transaction;
 import com.pracas.domain.controller.DataFactory;
 import com.pracas.domain.controller.ICtrlUsuariRegistrat;
 import com.pracas.domain.model.UsuariRegistrat;

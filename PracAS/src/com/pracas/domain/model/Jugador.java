@@ -1,12 +1,21 @@
 package com.pracas.domain.model;
 
+import java.util.List;
 import java.util.Set;
+
+import javax.persistence.Basic;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 public class Jugador extends UsuariRegistrat {
 
+	@Basic
 	private String email;
+	@Basic
 	private Partida partidaActual;
-	private Set<Partida> partidesJugades; 
+    @OneToMany
+	@JoinColumn(name="PARTIDA_JUGADA")
+	private List<Partida> partidesJugades; 
 
 	public boolean getMes2PartidesGuanyades() {
 		int cont = 0;
@@ -24,6 +33,13 @@ public class Jugador extends UsuariRegistrat {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Partida getPartidaActual() {
+		return partidaActual;
+	}
+	public void setPartidaActual(Partida partidaActual) {
+		this.partidaActual = partidaActual;
 	}
 	
 	

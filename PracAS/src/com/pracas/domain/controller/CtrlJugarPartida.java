@@ -5,14 +5,15 @@ import java.util.Set;
 
 import com.pracas.domain.model.Categoria;
 import com.pracas.domain.model.Jugador;
+import com.pracas.domain.model.Lletra;
+import com.pracas.domain.model.Parametres;
 import com.pracas.domain.model.Partida;
 import com.pracas.exception.NoCategoriesException;
 import com.pracas.exception.UserIsNotPlayerException;
 import com.pracas.exception.UsernameNotExistsException;
 import com.pracas.exception.WrongPasswordException;
-
-import transaction.TxConsultarCategories;
-import transaction.TxLogin;
+import com.pracas.transaction.TxConsultarCategories;
+import com.pracas.transaction.TxLogin;
 
 public class CtrlJugarPartida {
 
@@ -41,10 +42,24 @@ public class CtrlJugarPartida {
 		Categoria categoria = icc.getCategoria(category);
 		Jugador jugador = icj.getJugador(this.userN);
 		
-		int id = 0;
-		// TODO getNextId parametres ...
-		// TODO Partida partida = new Partida();
+		this.idPartida = Parametres.getInstance().getIdPartida();
+
+		Partida partida = new Partida(this.idPartida, categoria, jugador);
+		// TODO s'ha de guardar la partida aqui a domini o a BD, no? a BD, amb el Ctrl
+		//return partida.getDadesInicials();
+	}
+	
+	public void ferJugada(int pos, Lletra lletra) {
+		ICtrlPartida icp = DataFactory.getInstance().getCtrlPartida();
+		Partida partida = icp.getPartida(idPartida);
+		partida.ferJugada(pos, lletra);
 		
+		// TODO create classes ResponseType for the UML tupletypes?
+		boolean guanyada = false;
+		if (guanyada) {
+			String message = MessageFormat.format("{0}", "Has guanyat!");
+			AdapterFactory.getInstance().getMailService().sendMail(message); // TODO expand and use interface?
+		}
 	}
 	
 	

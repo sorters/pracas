@@ -1,12 +1,18 @@
 package com.pracas.domain.model;
 
+import java.util.List;
 import java.util.Random;
-import java.util.Set;
+
+import javax.persistence.Id;
 
 public class Categoria {
 	
+    @Id
 	private String nom;
-	private Set<Paraula> paraules;
+        
+    //@OneToMany(mappedBy="")
+	//@JoinColumn(name="PARAULA")
+	private List<Paraula> paraules;
 	
 	public Paraula getParaulaAleatoria() {
 		int pos = new Random().nextInt(paraules.size());

@@ -1,4 +1,4 @@
-package transaction;
+package com.pracas.transaction;
 
 import java.util.HashSet;
 import java.util.Set;
