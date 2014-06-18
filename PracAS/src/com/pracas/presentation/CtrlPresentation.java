@@ -25,6 +25,7 @@ public class CtrlPresentation {
     
     public void OKPressedAuthenticate(String username, String password) {
         try {
+        	//cjp.authenticate("rohert", "admin");
             cjp.authenticate(username, password);
         } catch (UsernameNotExistsException ex) {
             Logger.getLogger(CtrlPresentation.class.getName()).log(Level.SEVERE, null, ex);

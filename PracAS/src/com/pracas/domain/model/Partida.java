@@ -8,7 +8,7 @@ public class Partida {
 	private int errors;
 	
 	private Jugador jugadorPartidaActual;
-	private Jugador jugadorPartidaJugada; // TODO
+	//private Jugador jugadorPartidaJugada; // TODO
 
 	public Partida(int idPartida, Jugador jugadorPartidaActual, Categoria categoria) {
 		super();

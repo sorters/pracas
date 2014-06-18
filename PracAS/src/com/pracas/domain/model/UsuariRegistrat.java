@@ -1,10 +1,19 @@
 package com.pracas.domain.model;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class UsuariRegistrat {
 	
+	@Id
 	private String nom;
+	@Basic
 	private String cognom;
+	@Basic
 	private String username;
+	@Basic
 	private String pwd;
 	
 	public boolean checkPassword(String password) {
