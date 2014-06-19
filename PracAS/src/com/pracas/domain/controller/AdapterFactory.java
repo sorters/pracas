@@ -8,9 +8,9 @@ public class AdapterFactory {
 	
 	private static AdapterFactory instance;
 	
-	private EstrategiaPenalitzacio estPen;
-	private EstrategiaNoPenalitzacio estNoPen;
-	private MailServiceAdapter mailServiceAdapter;
+	private static EstrategiaPenalitzacio estPen;
+	private static EstrategiaNoPenalitzacio estNoPen;
+	private static MailServiceAdapter mailServiceAdapter;
 	
 	private AdapterFactory() {}
 	
@@ -20,15 +20,21 @@ public class AdapterFactory {
 		return instance;
 	}
 
-	public EstrategiaPenalitzacio getEstrategiaPenalitzacio() {
+	public static EstrategiaPenalitzacio getEstrategiaPenalitzacio() {
+		if (estPen == null)
+			estPen = new EstrategiaPenalitzacio();
 		return estPen;
 	}
 
-	public EstrategiaNoPenalitzacio getEstrategiaNoPenalitzacio() {
+	public static EstrategiaNoPenalitzacio getEstrategiaNoPenalitzacio() {
+		if (estNoPen == null)
+			estNoPen = new EstrategiaNoPenalitzacio();
 		return estNoPen;
 	}
 
-	public MailServiceAdapter getMailService() {
+	public static MailServiceAdapter getMailService() {
+		if (mailServiceAdapter == null)
+			mailServiceAdapter = new MailServiceAdapter();
 		return mailServiceAdapter;
 	}
 	

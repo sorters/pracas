@@ -2,12 +2,15 @@ package com.pracas.domain.model;
 
 public class EstrategiaNoPenalitzacio implements IEstrategiaPuntuacio {
 
-	private float puntuacioEncert;
+	private int puntuacioEncert;
 	
 	@Override
-	public void calcularPuntuacio(int nEncerts, int nErrors) {
-		// TODO Auto-generated method stub
-		
+	public int calcularPuntuacio(int nEncerts, int nErrors) {
+		return (nEncerts * puntuacioEncert);
+	}
+
+	public void setPuntuacioEncert(int puntuacioEncert) {
+		this.puntuacioEncert = puntuacioEncert;
 	}
 	
 }
