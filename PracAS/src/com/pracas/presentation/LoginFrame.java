@@ -73,8 +73,6 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setText("Contrassenya : ");
 
         jButton2.setText("Cancel");
-        jButton2.setMaximumSize(new java.awt.Dimension(60, 29));
-        jButton2.setMinimumSize(new java.awt.Dimension(60, 29));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
