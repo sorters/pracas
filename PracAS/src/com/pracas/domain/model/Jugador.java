@@ -1,7 +1,6 @@
 package com.pracas.domain.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.JoinColumn;

@@ -43,7 +43,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setLabel("Login");
+        jButton1.setText("Login");
         jButton1.setMaximumSize(new java.awt.Dimension(60, 29));
         jButton1.setMinimumSize(new java.awt.Dimension(60, 29));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
