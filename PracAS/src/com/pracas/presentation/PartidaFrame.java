@@ -33,7 +33,7 @@ public class PartidaFrame extends javax.swing.JFrame {
 
         jButton2.setText("Cancel");
 
-        jButton1.setLabel("Login");
+        jButton1.setText("Login");
         jButton1.setMaximumSize(new java.awt.Dimension(60, 29));
         jButton1.setMinimumSize(new java.awt.Dimension(60, 29));
         jButton1.addActionListener(new java.awt.event.ActionListener() {

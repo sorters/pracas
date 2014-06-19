@@ -1,6 +1,7 @@
 package com.pracas.domain.controller;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Set;
 
 import com.pracas.domain.model.Categoria;
@@ -30,9 +31,10 @@ public class CtrlJugarPartida {
 		this.userN = userN;
 	}
 	
-	public Set<String> obtenirCategories() throws NoCategoriesException {
+	public List<String> obtenirCategories() throws NoCategoriesException {
 		TxConsultarCategories txConsultarCategories = new TxConsultarCategories();
-		return txConsultarCategories.executar();
+		txConsultarCategories.executar();
+		return txConsultarCategories.getResultat();
 	}
 	
 	public void crearPartida(String category) {
