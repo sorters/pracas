@@ -32,7 +32,8 @@ public class CtrlPresentation {
     	messageFrame.setVisible(true);
     }
     
-    public void showPartida() {
+    public void showPartida(int numCaselles) {
+    	partidaFrame.setNumCaselles(numCaselles);
     	partidaFrame.setVisible(true);
     }
     
