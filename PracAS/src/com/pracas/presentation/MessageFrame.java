@@ -17,9 +17,8 @@ public class MessageFrame extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void showMessage(String msg) {
+    public void setMessage(String msg) {
     	jLabel.setText(msg);
-    	this.setVisible(true);
     }
 
     /**
