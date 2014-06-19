@@ -33,8 +33,6 @@ public class MessageFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jButton1.setText("OK");
         jButton1.setMaximumSize(new java.awt.Dimension(60, 29));
         jButton1.setMinimumSize(new java.awt.Dimension(60, 29));
