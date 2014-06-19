@@ -4,6 +4,8 @@
  */
 package com.pracas.presentation;
 
+import java.awt.event.ActionEvent;
+
 import javax.swing.UIManager;
 
 /**
@@ -71,6 +73,13 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setText("Contrassenya : ");
 
         jButton2.setText("Cancel");
+        jButton2.setMaximumSize(new java.awt.Dimension(60, 29));
+        jButton2.setMinimumSize(new java.awt.Dimension(60, 29));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,7 +124,11 @@ public class LoginFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+		
+	}
+
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         cp.OKPressedAuthenticate("", "");
     }//GEN-LAST:event_jButton1ActionPerformed
