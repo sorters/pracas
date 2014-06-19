@@ -17,7 +17,6 @@ public class MainFrame {
     
     private static CtrlPresentation cp;
     
-    /* */
     public static void main(String[] args) {
         // TODO code application logic here
         cp = new CtrlPresentation();
