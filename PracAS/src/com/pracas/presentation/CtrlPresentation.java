@@ -24,7 +24,7 @@ public class CtrlPresentation {
     public CtrlPresentation() {
         cjp = new CtrlJugarPartida();
         messageFrame = new MessageFrame();
-        partidaFrame = new PartidaFrame();
+        partidaFrame = new PartidaFrame(this);
     }
     
     public void showMessage(String msg) {
@@ -48,6 +48,15 @@ public class CtrlPresentation {
         } catch (UserIsNotPlayerException ex) {
             Logger.getLogger(CtrlPresentation.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void OKPressedPartida(int pos, String lletra) {
+    	// TO DO
+    	partidaFrame.afegirLletra(pos, lletra);
+    }
+    
+    public void CancelPressedPartida() {
+    	// TO DO
     }
     
 }
