@@ -1,6 +1,7 @@
 package com.pracas.transaction;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import com.pracas.domain.controller.DataFactory;
@@ -10,10 +11,10 @@ import com.pracas.exception.NoCategoriesException;
 
 public class TxConsultarCategories {
 
-	//private Set<String> resultat;
+	private List<String> resultat;
 	
-	public Set<String> executar() throws NoCategoriesException {
-		Set<String> resultat = new HashSet<String>();
+	public void executar() throws NoCategoriesException {
+		this.resultat = new ArrayList<String>();
 		
 		ICtrlCategoria icc = DataFactory.getInstance().getCtrlCategoria();
 		
@@ -23,9 +24,14 @@ public class TxConsultarCategories {
 			throw new NoCategoriesException();
 		
 		for (Categoria c : categories)
-			resultat.add(c.getNom());
+			this.resultat.add(c.getNom());
 		
+	}
+
+	public List<String> getResultat() {
 		return resultat;
 	}
+	
+	
 	
 }
