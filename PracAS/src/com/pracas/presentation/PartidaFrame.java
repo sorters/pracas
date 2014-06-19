@@ -2,18 +2,15 @@ package com.pracas.presentation;
 
 import javax.swing.GroupLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.BevelBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -38,14 +35,18 @@ public class PartidaFrame extends javax.swing.JFrame {
     static final int espaiEntreButtons = 38;
 	
 	int numCaselles = 0;
+	int posicioSeleccionada = -1;
+    private CtrlPresentation cp;
+
 	
     /**
      * Creates new form PartidaFrame
      */
-    public PartidaFrame() {
+    public PartidaFrame(CtrlPresentation cp) {
 		this.setMinimumSize(new Dimension(ampladaFinestra, alturaFinestra));
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		this.setTitle("Partida");
+		this.cp = cp;
 		initComponents();
     }
     
@@ -185,23 +186,44 @@ public class PartidaFrame extends javax.swing.JFrame {
 
     }
     
+    // Operacio que s'executa quan es prem el button OK
 	protected void okButtonActionPerformed(ActionEvent evt) {
-		
+		String lletra = caselles[posicioSeleccionada].getText();
+		int posicio = posicioSeleccionada;
+		caselles[posicio].setText("");
+		cp.OKPressedPartida(posicio, lletra);
+		System.out.println(posicio + lletra);
 	}
     
+    // Operacio que s'executa quan es prem el button Aturar
     protected void stopButtonActionPerformed(ActionEvent evt) {
-    	
+    	cp.CancelPressedPartida();
 	}
     
+    public void afegirLletra(int pos, String lletra) {
+    	caselles[pos].setText(lletra);
+    	caselles[pos].setEditable(false);
+		for (int i = 0; i < caselles.length; ++i) {
+			String text = caselles[i].getText();
+			if (text.equals("")) caselles[i].setEditable(true);
+		}
+    }
+    
+    // Operacio que s'executa que s'esborra algun caracter
+    // en alguna de les caselles
 	private void doOnRemove(int pos) {
 		if (caselles[pos].getText().length() == 0)
+			posicioSeleccionada = -1;
 			for (int i = 0; i < caselles.length; ++i) {
 				String text = caselles[i].getText();
 				if (text.equals("")) caselles[i].setEditable(true);
 			}
 	}
 	
+    // Operacio que s'executa que s'escriu text
+    // en alguna de les caselles
 	private void doOnInsert(int pos) {
+		posicioSeleccionada = pos;
 		if (caselles[pos].getText().length() == 1)
 			for (int i = 0; i < caselles.length; ++i) {
 				if (i != pos) caselles[i].setEditable(false);
