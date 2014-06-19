@@ -19,14 +19,21 @@ public class CtrlPresentation {
     
     private static CtrlJugarPartida cjp;
     private MessageFrame messageFrame;
+    private PartidaFrame partidaFrame;
     
     public CtrlPresentation() {
         cjp = new CtrlJugarPartida();
         messageFrame = new MessageFrame();
+        partidaFrame = new PartidaFrame();
     }
     
     public void showMessage(String msg) {
-    	messageFrame.showMessage(msg);
+    	messageFrame.setMessage(msg);
+    	messageFrame.setVisible(true);
+    }
+    
+    public void showPartida() {
+    	partidaFrame.setVisible(true);
     }
     
     public void OKPressedAuthenticate(String username, String password) {
