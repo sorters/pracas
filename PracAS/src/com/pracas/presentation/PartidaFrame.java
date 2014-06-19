@@ -3,6 +3,8 @@ package com.pracas.presentation;
 import javax.swing.GroupLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -17,16 +19,18 @@ import javax.swing.border.BevelBorder;
 public class PartidaFrame extends javax.swing.JFrame {
 	
 	static final int MAX_CASELLES = 9;
-	int numCaselles;
 	
 	static final double relacio = 1.618034;
-	static final int alturaFinestra = 560;
-	static final int ampladaFinestra = (int) (alturaFinestra * relacio);
+	int alturaFinestra = 560;
+	int ampladaFinestra = (int) (alturaFinestra * relacio);
 	
 	static final int margeVertical = 29;
 	static final int margeHoritzontal = 29;
 	
 	static final int longitudText = 92;
+	static final double prcEspaiEntreCaselles = 0.5;
+	
+	int numCaselles;
 	
     /**
      * Creates new form PartidaFrame
@@ -34,17 +38,16 @@ public class PartidaFrame extends javax.swing.JFrame {
     public PartidaFrame() {
 		this.setMinimumSize(new Dimension(ampladaFinestra, alturaFinestra));
 		this.setTitle("Partida");
-		
 		numCaselles = 0;
-        initComponents();
+		initComponents();
     }
     
     public void setNumCaselles(int numCaselles) {
-    	this.numCaselles = numCaselles;
     	for (int i = 0; i < caselles.length; ++i) {
     		if (i < numCaselles) caselles[i].setVisible(true);
     		else caselles[i].setVisible(false);
     	}
+    	this.numCaselles = numCaselles;
     	configPanellCaselles();
     }
     
@@ -100,28 +103,14 @@ public class PartidaFrame extends javax.swing.JFrame {
             }
         });
 
-        /*javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(126, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(259, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addContainerGap())
-        );
-
-        //pack();*/
+        this.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent e) {
+            	
+                alturaFinestra = e.getComponent().getSize().height;
+                ampladaFinestra = e.getComponent().getSize().width;
+                configPanellCaselles();
+            }
+        });
         
         configPanellPrincipal();
         configPanellInfo();
@@ -205,12 +194,14 @@ public class PartidaFrame extends javax.swing.JFrame {
 
     
     
+    
     private void configPanellCaselles() {
     	
-    	double prc = 0.5;
-        int longCasella = (int) ((ampladaFinestra - (2 * margeHoritzontal)) / (numCaselles + (numCaselles + 1)*prc));
+    	double numerador = ampladaFinestra - 2*margeHoritzontal;
+    	double denominador = numCaselles + (numCaselles + 1)*prcEspaiEntreCaselles;
+        int longCasella = (int) (numerador/denominador);
         		
-        int espai = (int) (longCasella * prc);
+        int espai = (int) (longCasella * prcEspaiEntreCaselles);
     	
         panellCaselles.setMinimumSize(new Dimension(ampladaFinestra - 2*margeHoritzontal - 1, 1));
         
