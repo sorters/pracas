@@ -16,6 +16,10 @@ public class MessageFrame extends javax.swing.JFrame {
     public MessageFrame() {
         initComponents();
     }
+    
+    public setMessage(String msg) {
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,6 +31,7 @@ public class MessageFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,9 +64,9 @@ public class MessageFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -99,5 +104,6 @@ public class MessageFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel;
     // End of variables declaration//GEN-END:variables
 }
