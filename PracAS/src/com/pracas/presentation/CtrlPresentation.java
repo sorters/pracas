@@ -18,9 +18,15 @@ import java.util.logging.Logger;
 public class CtrlPresentation {
     
     private static CtrlJugarPartida cjp;
+    private MessageFrame messageFrame;
     
     public CtrlPresentation() {
         cjp = new CtrlJugarPartida();
+        messageFrame = new MessageFrame();
+    }
+    
+    public void showMessage(String msg) {
+    	messageFrame.showMessage(msg);
     }
     
     public void OKPressedAuthenticate(String username, String password) {
