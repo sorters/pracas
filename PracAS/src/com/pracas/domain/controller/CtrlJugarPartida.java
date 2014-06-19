@@ -13,6 +13,7 @@ import com.pracas.exception.NoCategoriesException;
 import com.pracas.exception.UserIsNotPlayerException;
 import com.pracas.exception.UsernameNotExistsException;
 import com.pracas.exception.WrongPasswordException;
+import com.pracas.service.IMailServiceAdapter;
 import com.pracas.transaction.TxConsultarCategories;
 import com.pracas.transaction.TxLogin;
 
@@ -24,7 +25,7 @@ public class CtrlJugarPartida {
 	public void authenticate(String userN, String passwd) throws UsernameNotExistsException, WrongPasswordException, UserIsNotPlayerException {
 		TxLogin txLogin = new TxLogin(userN, passwd);
 		txLogin.executar();
-		ICtrlJugador icj = DataFactory.getInstance().getCtrlJugador();
+		ICtrlJugador icj = DataFactory.getCtrlJugador();
 		boolean b = icj.exists(userN);
 		if (!b)
 			throw new UserIsNotPlayerException(MessageFormat.format("User {0} is not a player", userN));
@@ -38,29 +39,32 @@ public class CtrlJugarPartida {
 	}
 	
 	public void crearPartida(String category) {
-		ICtrlCategoria icc = DataFactory.getInstance().getCtrlCategoria();
-		ICtrlJugador icj = DataFactory.getInstance().getCtrlJugador();
+		ICtrlCategoria icc = DataFactory.getCtrlCategoria();
+		ICtrlJugador icj = DataFactory.getCtrlJugador();
+		ICtrlPartida icp = DataFactory.getCtrlPartida();
 		
 		Categoria categoria = icc.getCategoria(category);
 		Jugador jugador = icj.getJugador(this.userN);
 		
-		this.idPartida = Parametres.getInstance().getIdPartida();
+		this.idPartida = Parametres.getIdPartida();
 
 		Partida partida = new Partida(this.idPartida, categoria, jugador);
+		/* save partida */
 		// TODO s'ha de guardar la partida aqui a domini o a BD, no? a BD, amb el Ctrl
 		//return partida.getDadesInicials();
 	}
 	
-	public void ferJugada(int pos, Lletra lletra) {
-		ICtrlPartida icp = DataFactory.getInstance().getCtrlPartida();
+	public void ferJugada(int pos, char ch) {
+		ICtrlPartida icp = DataFactory.getCtrlPartida();
 		Partida partida = icp.getPartida(idPartida);
-		partida.ferJugada(pos, lletra);
+		partida.ferJugada(pos, ch);
 		
 		// TODO create classes ResponseType for the UML tupletypes?
 		boolean guanyada = false;
 		if (guanyada) {
 			String message = MessageFormat.format("{0}", "Has guanyat!");
-			AdapterFactory.getInstance().getMailService().sendMail(message); // TODO expand and use interface?
+			IMailServiceAdapter imsa = AdapterFactory.getMailService();
+			imsa.sendMail(message);
 		}
 	}
 	

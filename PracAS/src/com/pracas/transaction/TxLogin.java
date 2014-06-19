@@ -6,7 +6,7 @@ import com.pracas.exception.UsernameNotExistsException;
 import com.pracas.exception.WrongPasswordException;
 
 public class TxLogin {
-	/* wat */
+	
 	private String userN;
 	private String passwd;
 	

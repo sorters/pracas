@@ -1,5 +1,6 @@
 package com.pracas.domain.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -9,21 +10,18 @@ public class Categoria {
 	
     @Id
 	private String nom;
-        
     //@OneToMany(mappedBy="")
 	//@JoinColumn(name="PARAULA")
 	private List<Paraula> paraules;
 	
+	public Categoria() {
+		paraules = new ArrayList<Paraula>();
+		// TODO Stub to fill words
+	}
+	
 	public Paraula getParaulaAleatoria() {
 		int pos = new Random().nextInt(paraules.size());
-		int i = 0;
-		for (Paraula p : paraules) {
-			if (i == pos) {
-				return p;
-			}
-			i++;
-		}
-		return null;
+		return paraules.get(pos);
 	}
 	
 	public String getNom() {

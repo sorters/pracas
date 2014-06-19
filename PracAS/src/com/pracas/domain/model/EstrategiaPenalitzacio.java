@@ -10,12 +10,22 @@ public class EstrategiaPenalitzacio implements IEstrategiaPuntuacio {
 		return ((nEncerts * puntuacioEncert) - (nErrors * puntuacioError));
 	}
 
+	public int getPuntuacioEncert() {
+		return puntuacioEncert;
+	}
 	public void setPuntuacioEncert(int puntuacioEncert) {
 		this.puntuacioEncert = puntuacioEncert;
 	}
 
+	public int getPuntuacioError() {
+		return puntuacioError;
+	}
 	public void setPuntuacioError(int puntuacioError) {
 		this.puntuacioError = puntuacioError;
 	}
+
+
+
+
 
 }

@@ -4,8 +4,8 @@ public class Parametres {
 
 	private static Parametres instance;
 	
-	private int nombreMaximErrors;
-	private int idPartida;
+	private static int nombreMaximErrors;
+	private static int idPartida;
 	
 	private Parametres() {
 		idPartida = 0;
@@ -17,19 +17,19 @@ public class Parametres {
 		return instance;
 	}
 
-	public int getNombreMaximErrors() {
+	public static int getNombreMaximErrors() {
 		return nombreMaximErrors;
 	}
-	public void setNombreMaximErrors(int nombreMaximErrors) {
-		this.nombreMaximErrors = nombreMaximErrors;
+	public static void setNombreMaximErrors(int _nombreMaximErrors) {
+		nombreMaximErrors = _nombreMaximErrors;
 	}
 	
-	public int getIdPartida() {
+	public static int getIdPartida() {
 		idPartida++;
 		return idPartida;
 	}
-	public void setIdPartida(int idPartida) {
-		this.idPartida = idPartida;
+	public static void setIdPartida(int _idPartida) {
+		idPartida = _idPartida;
 	}
 	
 	

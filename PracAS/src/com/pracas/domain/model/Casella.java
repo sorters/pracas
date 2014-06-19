@@ -19,13 +19,12 @@ public class Casella {
 	}
 	
 	public boolean intentarLletra(Lletra lletra) {
-		boolean comp = false;
-		if (comp) {
+		if (lletra == lletraCorrecta) {
 			encert = true;
 		} else {
 			lletresErronies.add(lletra);
 		}
-		return false;
+		return encert;
 	}
 	
 	public int getPosicio() {

@@ -20,9 +20,6 @@ public class Partida {
 	private boolean guanyada;
 	@Basic
 	private int errors;
-	//@Basic
-	//private Jugador jugadorPartidaActual;
-	//private Jugador jugadorPartidaJugada; // TODO
 	@ManyToOne
 	@JoinColumn(name="ID_PARAULA")
 	private Paraula paraula;
@@ -38,9 +35,9 @@ public class Partida {
 		errors = 0;
 		idPartida = _idPartida;
 		if (_jugadorPartidaActual.getMes2PartidesGuanyades()) {
-			estrategiaPuntuacio = AdapterFactory.getInstance().getEstrategiaPenalitzacio();
+			estrategiaPuntuacio = AdapterFactory.getEstrategiaPenalitzacio();
 		} else {
-			estrategiaPuntuacio = AdapterFactory.getInstance().getEstrategiaNoPenalitzacio();
+			estrategiaPuntuacio = AdapterFactory.getEstrategiaNoPenalitzacio();
 		}
 		paraula = _categoria.getParaulaAleatoria();
 		caselles = new ArrayList<Casella>();
@@ -54,15 +51,19 @@ public class Partida {
 	}
 	
 	public void getDadesInicials() {
-		Parametres.getInstance().getNombreMaximErrors();
-		//estrategiaPuntuacio.calcularPuntuacio(nEncerts, nErrors); //TODO
+		Parametres.getNombreMaximErrors();
+		// puntuacio inicial = 0
+		estrategiaPuntuacio.getPuntuacioEncert();
+		estrategiaPuntuacio.getPuntuacioError();
+		//TODO Create responsetype;
 	}
 	
-	public void ferJugada(int pos, Lletra lletra) {
+	public void ferJugada(int pos, char ch) {
 		Casella casella = caselles.get(pos);
-		if (!casella.intentarLletra(lletra)) {
+		// TODO check lletra as enum or throw exception
+		/*if (!casella.intentarLletra(lletra)) {
 			errors++;
-			if (errors > Parametres.getInstance().getNombreMaximErrors()) // TODO > o >= ??
+			if (errors > Parametres.getNombreMaximErrors()) // TODO > o >= ??
 				acabada = true;
 			int numEncerts = 0;
 			for (Casella c : caselles) {
@@ -74,7 +75,7 @@ public class Partida {
 				guanyada = true;
 			}
 			estrategiaPuntuacio.calcularPuntuacio(numEncerts, errors);
-		}
+		}*/
 	}
 	
 	public int getIdPartida() {

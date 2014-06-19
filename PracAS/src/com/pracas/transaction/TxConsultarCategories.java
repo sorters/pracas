@@ -16,9 +16,9 @@ public class TxConsultarCategories {
 	public void executar() throws NoCategoriesException {
 		this.resultat = new ArrayList<String>();
 		
-		ICtrlCategoria icc = DataFactory.getInstance().getCtrlCategoria();
+		ICtrlCategoria icc = DataFactory.getCtrlCategoria();
 		
-		Set<Categoria> categories = icc.getAll();
+		List<Categoria> categories = icc.getAll();
 		
 		if (categories.size() == 0)
 			throw new NoCategoriesException();

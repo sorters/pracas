@@ -1,6 +1,6 @@
 package com.pracas.domain.controller;
 
-import java.util.Set;
+import java.util.List;
 
 import com.pracas.domain.model.Categoria;
 
@@ -8,6 +8,6 @@ public interface ICtrlCategoria {
 
 	public Categoria getCategoria(String nom);
 	
-	public Set<Categoria> getAll();
+	public List<Categoria> getAll();
 	
 }

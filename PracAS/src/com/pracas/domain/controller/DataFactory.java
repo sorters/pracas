@@ -13,8 +13,14 @@ public class DataFactory {
 
 	private static DataFactory ctrlDataFactory = null;
 	
-	// els tenim tots a null i retornem on demand havent creat?
-	// o retornem sempre un de nou?
+	private static CtrlAdministradorDB iadmin = null;
+	private static CtrlCasellaDB icasella = null;
+	private static CtrlCategoriaDB icategoria = null;
+	private static CtrlJugadorDB ijugador = null;
+	private static CtrlParametresDB iparametres = null;
+	private static CtrlParaulaDB iparaula = null;
+	private static CtrlPartidaDB ipartida = null;
+	private static CtrlUsuariRegistratDB iusuariregistrat = null;
 	
 	private DataFactory(){};
 	
@@ -24,29 +30,45 @@ public class DataFactory {
 		return ctrlDataFactory;
 	}
 	
-	public ICtrlAdministrador getCtrlAdministrador() {
-		return new CtrlAdministradorDB();
+	public static ICtrlAdministrador getCtrlAdministrador() {
+		if (iadmin == null)
+			iadmin = new CtrlAdministradorDB();
+		return iadmin;
 	}
-	public ICtrlCasella getCtrlCasella() {
-		return new CtrlCasellaDB();
+	public static ICtrlCasella getCtrlCasella() {
+		if (icasella == null)
+			icasella = new CtrlCasellaDB();
+		return icasella;
 	}
-	public ICtrlCategoria getCtrlCategoria() {
-		return new CtrlCategoriaDB();
+	public static ICtrlCategoria getCtrlCategoria() {
+		if (icategoria == null)
+			icategoria = new CtrlCategoriaDB();
+		return icategoria;
 	}
-	public ICtrlJugador getCtrlJugador() {
-		return new CtrlJugadorDB();
+	public static ICtrlJugador getCtrlJugador() {
+		if (ijugador == null)
+			ijugador = new CtrlJugadorDB();
+		return ijugador;
 	}
-	public ICtrlParametres getCtrlParametres() {
-		return new CtrlParametresDB();
+	public static ICtrlParametres getCtrlParametres() {
+		if (iparametres == null)
+			iparametres = new CtrlParametresDB();
+		return iparametres;
 	}
-	public ICtrlParaula getCtrlParaula() {
-		return new CtrlParaulaDB();
+	public static ICtrlParaula getCtrlParaula() {
+		if (iparaula == null)
+			iparaula = new CtrlParaulaDB();
+		return iparaula;
 	}
-	public ICtrlPartida getCtrlPartida() {
-		return new CtrlPartidaDB();
+	public static ICtrlPartida getCtrlPartida() {
+		if (ipartida == null)
+			ipartida = new CtrlPartidaDB();
+		return ipartida;
 	}
-	public ICtrlUsuariRegistrat getCtrlUsuariRegistrat() {
-		return new CtrlUsuariRegistratDB();
+	public static ICtrlUsuariRegistrat getCtrlUsuariRegistrat() {
+		if (iusuariregistrat == null)
+			iusuariregistrat = new CtrlUsuariRegistratDB();
+		return iusuariregistrat;
 	}
 	
 }
