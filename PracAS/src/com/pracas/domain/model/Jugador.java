@@ -37,6 +37,11 @@ public class Jugador extends UsuariRegistrat {
 		return (cont >= 2);
 	}
 	
+	public void finalitzarPartida() {
+		partidesJugades.add(partidaActual);
+		partidaActual = null;
+	}
+	
 	public String getEmail() {
 		return email;
 	}

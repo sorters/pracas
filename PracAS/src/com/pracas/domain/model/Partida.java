@@ -29,9 +29,12 @@ public class Partida {
 	private IEstrategiaPuntuacio estrategiaPuntuacio;
 	@Transient
 	private List<Casella> caselles;
+	@Transient
+	private Jugador jugador;
 
 	public Partida(int _idPartida, Categoria _categoria, Jugador _jugadorPartidaActual) {
 		super();
+		jugador = _jugadorPartidaActual;
 		acabada = false;
 		guanyada = false;
 		errors = 0;
@@ -54,32 +57,43 @@ public class Partida {
 		_jugadorPartidaActual.setPartidaActual(this);
 	}
 	
-	public void getDadesInicials() {
-		Parametres.getNombreMaximErrors();
-		// puntuacio inicial = 0
-		estrategiaPuntuacio.getPuntuacioEncert();
-		estrategiaPuntuacio.getPuntuacioError();
-		//TODO Create responsetype;
+	public DadesInicialsResponseType getDadesInicials() {
+		return (new DadesInicialsResponseType(
+						0, 
+						Parametres.getNombreMaximErrors(), 
+						estrategiaPuntuacio.getPuntuacioEncert(), 
+						estrategiaPuntuacio.getPuntuacioError()
+					));
 	}
 	
-	public void ferJugada(int pos, char _ch) throws InvalidLetterException {
+	public JugadaResponseType ferJugada(int pos, char _ch) throws InvalidLetterException {
 		Casella casella = caselles.get(pos);
 
-		if (!casella.intentarLletra(Lletra.getLletraByChar(_ch))) {
+		int numEncerts = 0;
+		
+		boolean encert = casella.intentarLletra(Lletra.getLletraByChar(_ch));
+		
+		if (!encert) {
 			errors++;
 			if (errors >= Parametres.getNombreMaximErrors())
 				acabada = true;
-			int numEncerts = 0;
-			for (Casella c : caselles) {
-				if (c.isEncert())
-					numEncerts++;
-			}
-			if (numEncerts == caselles.size()) {
-				acabada = true;
-				guanyada = true;
-			}
-			estrategiaPuntuacio.calcularPuntuacio(numEncerts, errors);
 		}
+		for (Casella c : caselles) {
+			if (c.isEncert())
+				numEncerts++;
+		}
+		if (numEncerts == caselles.size()) {
+			acabada = true;
+			guanyada = true;
+		}
+		
+		int puntuacio = estrategiaPuntuacio.calcularPuntuacio(numEncerts, errors);
+		
+		if (acabada) {
+			this.jugador.finalitzarPartida(); // TODO check with others if necessary (forces player as attribute)
+		}
+		
+		return new JugadaResponseType(encert, acabada, guanyada, puntuacio, errors);
 	}
 	
 	public int getIdPartida() {

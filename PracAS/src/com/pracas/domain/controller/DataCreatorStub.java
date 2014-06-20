@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import com.pracas.domain.model.Categoria;
 import com.pracas.domain.model.Jugador;
 import com.pracas.domain.model.Paraula;
-import com.pracas.domain.model.Partida;
 import com.pracas.domain.model.UsuariRegistrat;
 import com.pracas.persistence.PersistenceSessionFactory;
 

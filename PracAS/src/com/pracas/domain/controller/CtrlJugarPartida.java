@@ -4,6 +4,8 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import com.pracas.domain.model.Categoria;
+import com.pracas.domain.model.DadesInicialsResponseType;
+import com.pracas.domain.model.JugadaResponseType;
 import com.pracas.domain.model.Jugador;
 import com.pracas.domain.model.Parametres;
 import com.pracas.domain.model.Partida;
@@ -37,7 +39,7 @@ public class CtrlJugarPartida {
 		return txConsultarCategories.getResultat();
 	}
 	
-	public void crearPartida(String category) {
+	public DadesInicialsResponseType crearPartida(String category) {
 		ICtrlCategoria icc = DataFactory.getCtrlCategoria();
 		ICtrlJugador icj = DataFactory.getCtrlJugador();
 		ICtrlPartida icp = DataFactory.getCtrlPartida();
@@ -50,21 +52,23 @@ public class CtrlJugarPartida {
 		Partida partida = new Partida(this.idPartida, categoria, jugador);
 		icp.saveOrUpdatePartida(partida);
 		
-		//return partida.getDadesInicials();
+		return partida.getDadesInicials();
 	}
 	
-	public void ferJugada(int pos, char ch) throws InvalidLetterException {
+	public JugadaResponseType ferJugada(int pos, char ch) throws InvalidLetterException {
 		ICtrlPartida icp = DataFactory.getCtrlPartida();
 		Partida partida = icp.getPartida(idPartida);
-		partida.ferJugada(pos, ch);
 		
-		// TODO create classes ResponseType for the UML tupletypes?
-		boolean guanyada = false;
-		if (guanyada) {
+		JugadaResponseType response = partida.ferJugada(pos, ch);
+		
+		if (response.isGuanyada()) {
+			// TODO build a nice and cute message :D
 			String message = MessageFormat.format("{0}", "Has guanyat!");
 			IMailServiceAdapter imsa = AdapterFactory.getMailService();
 			imsa.sendMail(message);
 		}
+		
+		return response;
 	}
 	
 	
