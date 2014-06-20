@@ -22,20 +22,20 @@ import javax.swing.JTextField;
  */
 public class PartidaFrame extends javax.swing.JFrame {
 		
-	static final double relacio = 1.618034;
-	int alturaFinestra = 560;
-	int ampladaFinestra = (int) (alturaFinestra * relacio);
+	private static final double relacio = 1.618034;
+	private int alturaFinestra = 560;
+	private int ampladaFinestra = (int) (alturaFinestra * relacio);
 	
-	static final int margeVertical = 29;
-	static final int margeHoritzontal = 29;
+	private static final int margeVertical = 29;
+	private static final int margeHoritzontal = 29;
 	
-	static final int longitudText = 92;
-	static final int midaMaxCasella = 160;
-	static final double prcEspaiEntreCaselles = 0.5;
-    static final int longButtons = 155;
-    static final int espaiEntreButtons = 38;
+	private static final int longitudText = 92;
+	private static final int midaMaxCasella = 160;
+	private static final double prcEspaiEntreCaselles = 0.5;
+    private static final int longButtons = 155;
+    private static final int espaiEntreButtons = 38;
 	
-	int posicioSeleccionada = -1;
+	private int posicioSeleccionada = -1;
     private CtrlPresentation cp;
 
 	
@@ -174,7 +174,7 @@ public class PartidaFrame extends javax.swing.JFrame {
     	caselles[pos].setEditable(false);
     }
     
-    //
+    //Deshabilita totes les caselles menys la que s'esta editant en aquell moment
     private void deshabilitarCaselles() {
 		for (int i = 0; i < caselles.length; ++i) {
 			if (caselles[i].isEditable() && caselles[i].getText().isEmpty()) {
@@ -183,7 +183,7 @@ public class PartidaFrame extends javax.swing.JFrame {
 		}
     }
     
-    //
+    //Habilita totes les caselles que no tinguin ja una lletra correcte introduida
     private void habilitarCaselles() {
 		for (int i = 0; i < caselles.length; ++i) {
 			String text = caselles[i].getText();
