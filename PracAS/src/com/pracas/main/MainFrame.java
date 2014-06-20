@@ -7,23 +7,20 @@ package com.pracas.main;
 import com.pracas.domain.controller.AdapterFactory;
 import com.pracas.domain.model.Parametres;
 import com.pracas.presentation.CtrlPresentation;
-import com.pracas.presentation.LoginFrame;
 
 /**
  *
  * @author arkey
  */
 public class MainFrame {
-    
-    private static LoginFrame loginFrame;
-    
+	
     private static CtrlPresentation cp;
     
     public static void main(String[] args) {
-        // TODO code application logic here
+
         cp = new CtrlPresentation();
         
-        /* HARDCODE DATA INITIALIZER */
+        /* HARDCODE DATA INITIALIZER */ // TODO (words, categories)
         AdapterFactory.getEstrategiaPenalitzacio().setPuntuacioEncert(100);
         AdapterFactory.getEstrategiaPenalitzacio().setPuntuacioError(10);
         
@@ -33,7 +30,6 @@ public class MainFrame {
         Parametres.setNombreMaximErrors(10);
         /* ------------------------ */
         
-        loginFrame = new LoginFrame(cp);
-        loginFrame.setVisible(true);
+        cp.showLogin();
     }
 }

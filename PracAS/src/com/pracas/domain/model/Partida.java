@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.pracas.domain.controller.AdapterFactory;
+import com.pracas.exception.InvalidLetterException;
 
 public class Partida {
 	
@@ -43,9 +44,11 @@ public class Partida {
 		caselles = new ArrayList<Casella>();
 		int pos = 0;
 		for (char ch : paraula.getNom().toCharArray()) {
-			//Casella c = new Casella(pos, ch); // TODO
-			//caselles.add(c)
-			pos++;
+			try {
+				Casella c = new Casella(pos, Lletra.getLletraByChar(ch));
+				caselles.add(c);
+				pos++;
+			} catch(InvalidLetterException ignore) {}
 		}
 		_jugadorPartidaActual.setPartidaActual(this);
 	}
@@ -58,12 +61,12 @@ public class Partida {
 		//TODO Create responsetype;
 	}
 	
-	public void ferJugada(int pos, char ch) {
+	public void ferJugada(int pos, char _ch) throws InvalidLetterException {
 		Casella casella = caselles.get(pos);
-		// TODO check lletra as enum or throw exception
-		/*if (!casella.intentarLletra(lletra)) {
+
+		if (!casella.intentarLletra(Lletra.getLletraByChar(_ch))) {
 			errors++;
-			if (errors > Parametres.getNombreMaximErrors()) // TODO > o >= ??
+			if (errors >= Parametres.getNombreMaximErrors())
 				acabada = true;
 			int numEncerts = 0;
 			for (Casella c : caselles) {
@@ -75,7 +78,7 @@ public class Partida {
 				guanyada = true;
 			}
 			estrategiaPuntuacio.calcularPuntuacio(numEncerts, errors);
-		}*/
+		}
 	}
 	
 	public int getIdPartida() {

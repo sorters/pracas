@@ -20,11 +20,17 @@ public class CtrlPresentation {
     private static CtrlJugarPartida cjp;
     private MessageFrame messageFrame;
     private PartidaFrame partidaFrame;
+    private LoginFrame loginFrame;
     
     public CtrlPresentation() {
         cjp = new CtrlJugarPartida();
         messageFrame = new MessageFrame();
         partidaFrame = new PartidaFrame(this);
+        loginFrame = new LoginFrame(this);
+    }
+    
+    public void showLogin() {
+    	loginFrame.setVisible(true);
     }
     
     public void showMessage(String msg) {

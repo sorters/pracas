@@ -127,8 +127,16 @@ public class LoginFrame extends javax.swing.JFrame {
 	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        cp.OKPressedAuthenticate("", "");
+		String username = jTextField1.getText();
+		String password = jTextField2.getText();
+		
+		if (("".equals(username)) || ("".equals(password))) {
+			cp.showMessage("Username or password missing");
+		} else {
+			cp.OKPressedAuthenticate(username, password);
+		}
+		
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

@@ -9,6 +9,7 @@ import com.pracas.domain.model.Jugador;
 import com.pracas.domain.model.Lletra;
 import com.pracas.domain.model.Parametres;
 import com.pracas.domain.model.Partida;
+import com.pracas.exception.InvalidLetterException;
 import com.pracas.exception.NoCategoriesException;
 import com.pracas.exception.UserIsNotPlayerException;
 import com.pracas.exception.UsernameNotExistsException;
@@ -54,7 +55,7 @@ public class CtrlJugarPartida {
 		//return partida.getDadesInicials();
 	}
 	
-	public void ferJugada(int pos, char ch) {
+	public void ferJugada(int pos, char ch) throws InvalidLetterException {
 		ICtrlPartida icp = DataFactory.getCtrlPartida();
 		Partida partida = icp.getPartida(idPartida);
 		partida.ferJugada(pos, ch);
