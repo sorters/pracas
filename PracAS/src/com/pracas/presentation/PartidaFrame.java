@@ -50,6 +50,14 @@ public class PartidaFrame extends javax.swing.JFrame {
 		initComponents();
     }  
 
+    public void setPuntuacio(int p) {
+    	textPunts.setText(String.valueOf(p));
+    }
+    
+    public void setNumError(int e) {
+    	textErrors.setText(String.valueOf(e));
+    }
+    
     private void initComponents() {
         
     	//Inicialitzacio dels components
@@ -123,6 +131,12 @@ public class PartidaFrame extends javax.swing.JFrame {
     				int pos = Integer.parseInt(e.getComponent().getName());
     				String text = caselles[pos].getText();
     				if (text.length() >= 1) {
+    					
+    					if (text.length() > 1) {
+    						String lletra = text.substring(0, 1);
+    						caselles[pos].setText(lletra);
+    					}
+    					
     					posicioSeleccionada = pos;
     					deshabilitarCaselles();
     				}
@@ -140,11 +154,11 @@ public class PartidaFrame extends javax.swing.JFrame {
     
     // Operacio que s'executa quan es prem el button OK
 	protected void okButtonActionPerformed(ActionEvent evt) {
-		String lletra = caselles[posicioSeleccionada].getText();
+		char lletra = caselles[posicioSeleccionada].getText().charAt(0);
 		int posicio = posicioSeleccionada;
 		caselles[posicio].setText("");
+		habilitarCaselles();
 		cp.OKPressedPartida(posicio, lletra);
-		System.out.println(posicio + lletra);
 	}
     
     // Operacio que s'executa quan es prem el button Aturar
@@ -154,13 +168,10 @@ public class PartidaFrame extends javax.swing.JFrame {
     
     // Operacio que fixa una lletra en una posicio.
     // Aquesta lletra ja no podra ser modificada
-    public void afegirLletra(int pos, String lletra) {
-    	caselles[pos].setText(lletra);
+    public void afegirLletra(int pos, char lletra) {
+    	String text = Character.toString(lletra);
+    	caselles[pos].setText(text);
     	caselles[pos].setEditable(false);
-		for (int i = 0; i < caselles.length; ++i) {
-			String text = caselles[i].getText();
-			if (text.equals("")) caselles[i].setEditable(true);
-		}
     }
     
     //
