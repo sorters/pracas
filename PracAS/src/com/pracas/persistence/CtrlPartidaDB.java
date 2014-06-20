@@ -14,14 +14,20 @@ public class CtrlPartidaDB implements ICtrlPartida {
 		Session s = PersistenceSessionFactory.getInstance().getSession();
 		s.beginTransaction();
 		Partida result = (Partida)s.get(Partida.class, _idPartida);
+		s.close();
 		if (result == null) {
-			// TODO
+			// TODO decide where to process this.
 		}
 		return result;
 	}
 
-	public int savePartida(Partida _partida) {
-		
+	@Override
+	public int saveOrUpdatePartida(Partida _partida) {
+		Session s = PersistenceSessionFactory.getInstance().getSession();
+		s.beginTransaction();
+		s.saveOrUpdate(_partida);
+		s.getTransaction().commit();
+		s.close();
 		return 0;
 	}
 	

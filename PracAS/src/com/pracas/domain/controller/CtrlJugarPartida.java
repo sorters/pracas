@@ -50,8 +50,8 @@ public class CtrlJugarPartida {
 		this.idPartida = Parametres.getIdPartida();
 
 		Partida partida = new Partida(this.idPartida, categoria, jugador);
-		/* save partida */
-		// TODO s'ha de guardar la partida aqui a domini o a BD, no? a BD, amb el Ctrl
+		icp.saveOrUpdatePartida(partida);
+		
 		//return partida.getDadesInicials();
 	}
 	

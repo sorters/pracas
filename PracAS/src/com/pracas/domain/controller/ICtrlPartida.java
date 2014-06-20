@@ -8,6 +8,8 @@ public interface ICtrlPartida {
 
 	public Partida getPartida(int idPartida);
 	
+	public int saveOrUpdatePartida(Partida partida);
+	
 	public Set<Partida> getAll();
 	
 }

@@ -4,19 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Categoria {
 	
     @Id
-	private String nom;
-    //@OneToMany(mappedBy="")
-	//@JoinColumn(name="PARAULA")
+	private String nomC;
+    @OneToMany
 	private List<Paraula> paraules;
 	
-	public Categoria() {
+	public Categoria(String _nom) {
+		nomC = _nom;
 		paraules = new ArrayList<Paraula>();
-		// TODO Stub to fill words
+	}
+	
+	public void afegeixParaula(Paraula _p) {
+		paraules.add(_p);
 	}
 	
 	public Paraula getParaulaAleatoria() {
@@ -25,10 +31,9 @@ public class Categoria {
 	}
 	
 	public String getNom() {
-		return nom;
+		return nomC;
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setNom(String _nom) {
+		this.nomC = _nom;
 	}
-	
 }

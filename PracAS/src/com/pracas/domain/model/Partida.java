@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 import com.pracas.domain.controller.AdapterFactory;
 import com.pracas.exception.InvalidLetterException;
 
+@Entity
 public class Partida {
 	
 	@Id
@@ -22,7 +24,6 @@ public class Partida {
 	@Basic
 	private int errors;
 	@ManyToOne
-	@JoinColumn(name="ID_PARAULA")
 	private Paraula paraula;
 	
 	private IEstrategiaPuntuacio estrategiaPuntuacio;

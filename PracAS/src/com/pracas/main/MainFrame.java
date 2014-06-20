@@ -5,6 +5,7 @@
 package com.pracas.main;
 
 import com.pracas.domain.controller.AdapterFactory;
+import com.pracas.domain.controller.DataCreatorStub;
 import com.pracas.domain.model.Parametres;
 import com.pracas.presentation.CtrlPresentation;
 
@@ -18,18 +19,21 @@ public class MainFrame {
     
     public static void main(String[] args) {
 
-        cp = new CtrlPresentation();
+        //cp = new CtrlPresentation();
         
         /* HARDCODE DATA INITIALIZER */ // TODO (words, categories)
-        AdapterFactory.getEstrategiaPenalitzacio().setPuntuacioEncert(100);
+        /*AdapterFactory.getEstrategiaPenalitzacio().setPuntuacioEncert(100);
         AdapterFactory.getEstrategiaPenalitzacio().setPuntuacioError(10);
         
         AdapterFactory.getEstrategiaNoPenalitzacio().setPuntuacioEncert(100);
         AdapterFactory.getEstrategiaNoPenalitzacio().setPuntuacioError(0);
         
-        Parametres.setNombreMaximErrors(10);
+        Parametres.setNombreMaximErrors(10);*/
         /* ------------------------ */
         
-        cp.showLogin();
+        DataCreatorStub dcs = new DataCreatorStub();
+        dcs.execute();
+        
+        //cp.showLogin();
     }
 }

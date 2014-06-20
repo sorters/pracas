@@ -3,8 +3,11 @@ package com.pracas.domain.model;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class UsuariRegistrat {
 	
 	@Id
@@ -15,6 +18,13 @@ public class UsuariRegistrat {
 	private String username;
 	@Basic
 	private String pwd;
+	
+	public UsuariRegistrat(String _nom, String _cognom, String _username, String _pwd) {
+		nom = _nom;
+		cognom = _cognom;
+		username = _username;
+		pwd = _pwd;
+	}
 	
 	public boolean checkPassword(String password) {
 		return pwd.equals(password);
