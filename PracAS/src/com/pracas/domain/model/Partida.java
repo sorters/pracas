@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.pracas.domain.controller.AdapterFactory;
 import com.pracas.exception.InvalidLetterException;
@@ -25,9 +25,9 @@ public class Partida {
 	private int errors;
 	@ManyToOne
 	private Paraula paraula;
-	
+	@Transient
 	private IEstrategiaPuntuacio estrategiaPuntuacio;
-	
+	@Transient
 	private List<Casella> caselles;
 
 	public Partida(int _idPartida, Categoria _categoria, Jugador _jugadorPartidaActual) {

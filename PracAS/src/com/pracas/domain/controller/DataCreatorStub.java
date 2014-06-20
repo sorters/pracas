@@ -12,7 +12,7 @@ import com.pracas.persistence.PersistenceSessionFactory;
 public class DataCreatorStub {
 
 	public void execute() {
-		Session s = PersistenceSessionFactory.getInstance().getSession();
+		Session s = PersistenceSessionFactory.getInstance().openSession();
 		
 		// ?? ICtrlPartida cpartida = DataFactory.getCtrlPartida();
 		// ?? ICtrlCasella ccasella = DataFactory.getCtrlCasella();
@@ -24,12 +24,7 @@ public class DataCreatorStub {
 		
 		s.beginTransaction();
 		
-		
-		
 		Categoria c1 = new Categoria("NOMS");
-		
-		
-		
 		Categoria c2 = new Categoria("ADJECTIUS");
 		
 		Paraula p1 = new Paraula("GOS");
@@ -59,7 +54,6 @@ public class DataCreatorStub {
 		Paraula p9 = new Paraula("TUCAN");
 		s.save(p9);
 		c1.afegeixParaula(p9);
-		
 		s.save(c1);
 		
 		Paraula p10 = new Paraula("GROS");
@@ -89,24 +83,26 @@ public class DataCreatorStub {
 		Paraula p18 = new Paraula("SOROLLOS");
 		s.save(p18);
 		c2.afegeixParaula(p18);
-		
 		s.save(c2);
 		
 		UsuariRegistrat u = new UsuariRegistrat("rohert", "esc", "rohert", "admin");
-		
 		s.save(u);
-		
-		Jugador j = new Jugador(u, "rohert@rohert.com");
-		
-		s.save(j);
-		
-		Partida p = new Partida(0, c1, j);
-		
-		s.save(p);
+		UsuariRegistrat u2 = new UsuariRegistrat("ben", "sorter", "sorter", "admin");
+		s.save(u2);
 		
 		s.getTransaction().commit();
+		PersistenceSessionFactory.getInstance().closeSession();
+		s = PersistenceSessionFactory.getInstance().openSession();
+		s.beginTransaction();
 		
-		s.close();
+		Jugador j = new Jugador(u, "rohert@rohert.com");
+		s.save(j);
+
+		/*Partida p = new Partida(0, c1, j);
+		s.save(p);*/
+		
+		s.getTransaction().commit();
+		PersistenceSessionFactory.getInstance().closeSession();
 		
 	}
 }

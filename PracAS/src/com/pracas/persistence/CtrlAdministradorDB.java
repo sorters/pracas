@@ -11,7 +11,7 @@ public class CtrlAdministradorDB implements ICtrlAdministrador {
 
 	@Override
 	public Administrador getAdministrador(String username) {
-		Session s = PersistenceSessionFactory.getInstance().getSession();
+		Session s = PersistenceSessionFactory.getInstance().openSession();
 		return (Administrador)s.load(Administrador.class, username);
 	}
 

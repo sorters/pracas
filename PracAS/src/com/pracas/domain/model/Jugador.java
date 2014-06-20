@@ -1,34 +1,29 @@
 package com.pracas.domain.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="JUGADOR")
 public class Jugador extends UsuariRegistrat {
 	
 	@Basic
 	private String email;
-	@Basic
+	@ManyToOne
 	private Partida partidaActual;
     @OneToMany
-	//@JoinColumn(name="PARTIDA_JUGADA")
 	private List<Partida> partidesJugades; 
 
-	public Jugador(String _nom, String _cognom, String _username, String _pwd) {
-		super(_nom, _cognom, _username, _pwd);
-		// TODO Auto-generated constructor stub
-	}
-
 	public Jugador(UsuariRegistrat _usr, String _email) {
-		super(_usr.getNom(), _usr.getCognom(), _usr.getUsername(), _usr.getPwd());
+		super(new String(_usr.getNom()), _usr.getCognom(), _usr.getUsername(), _usr.getPwd());
 		email = _email;
-		// TODO Auto-generated constructor stub
+		partidesJugades = new ArrayList<Partida>();
 	}
 	
 	public boolean getMes2PartidesGuanyades() {

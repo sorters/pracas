@@ -2,11 +2,9 @@ package com.pracas.domain.controller;
 
 import java.text.MessageFormat;
 import java.util.List;
-import java.util.Set;
 
 import com.pracas.domain.model.Categoria;
 import com.pracas.domain.model.Jugador;
-import com.pracas.domain.model.Lletra;
 import com.pracas.domain.model.Parametres;
 import com.pracas.domain.model.Partida;
 import com.pracas.exception.InvalidLetterException;

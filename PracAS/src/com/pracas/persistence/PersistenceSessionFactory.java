@@ -31,11 +31,19 @@ public class PersistenceSessionFactory {
 		return persistenceSessionFactory;
 	}
 	
-	public Session getSession() {
+	public Session openSession() {
 		if (s == null) {
 			s = sessionFactory.openSession();
+		} else {
+			if (!s.isOpen()) {
+				s = sessionFactory.openSession();
+			}
 		}
 		return s;
+	}
+	
+	public void closeSession() {
+		s.close();
 	}
 	
 }

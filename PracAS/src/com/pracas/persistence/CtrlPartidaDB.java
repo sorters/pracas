@@ -11,7 +11,7 @@ public class CtrlPartidaDB implements ICtrlPartida {
 
 	@Override
 	public Partida getPartida(int _idPartida) {
-		Session s = PersistenceSessionFactory.getInstance().getSession();
+		Session s = PersistenceSessionFactory.getInstance().openSession();
 		s.beginTransaction();
 		Partida result = (Partida)s.get(Partida.class, _idPartida);
 		s.close();
@@ -23,7 +23,7 @@ public class CtrlPartidaDB implements ICtrlPartida {
 
 	@Override
 	public int saveOrUpdatePartida(Partida _partida) {
-		Session s = PersistenceSessionFactory.getInstance().getSession();
+		Session s = PersistenceSessionFactory.getInstance().openSession();
 		s.beginTransaction();
 		s.saveOrUpdate(_partida);
 		s.getTransaction().commit();
