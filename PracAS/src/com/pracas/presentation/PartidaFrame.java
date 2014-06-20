@@ -6,22 +6,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
  *
  * @author arkey
  */
 public class PartidaFrame extends javax.swing.JFrame {
-	
-	static final int MAX_CASELLES = 9;
-	
+		
 	static final double relacio = 1.618034;
 	int alturaFinestra = 560;
 	int ampladaFinestra = (int) (alturaFinestra * relacio);
@@ -30,11 +30,11 @@ public class PartidaFrame extends javax.swing.JFrame {
 	static final int margeHoritzontal = 29;
 	
 	static final int longitudText = 92;
+	static final int midaMaxCasella = 160;
 	static final double prcEspaiEntreCaselles = 0.5;
     static final int longButtons = 155;
     static final int espaiEntreButtons = 38;
 	
-	int numCaselles = 0;
 	int posicioSeleccionada = -1;
     private CtrlPresentation cp;
 
@@ -48,17 +48,7 @@ public class PartidaFrame extends javax.swing.JFrame {
 		this.setTitle("Partida");
 		this.cp = cp;
 		initComponents();
-    }
-    
-    public void setNumCaselles(int numCaselles) {
-    	for (int i = 0; i < caselles.length; ++i) {
-    		if (i < numCaselles) caselles[i].setVisible(true);
-    		else caselles[i].setVisible(false);
-    	}
-    	this.numCaselles = numCaselles;
-    	configPanellCaselles();
-    }
-    
+    }  
 
     private void initComponents() {
         
@@ -74,16 +64,7 @@ public class PartidaFrame extends javax.swing.JFrame {
         panellCaselles = new JPanel();
         panellBotons = new JPanel();
         
-        caselles = new JTextField[MAX_CASELLES];
-        for (int i = 0; i < caselles.length; ++i) {
-        	caselles[i] = new JTextField();
-        	caselles[i].setMinimumSize(new Dimension(56, 56));
-        	caselles[i].setHorizontalAlignment((int) JTextField.CENTER_ALIGNMENT);
-        	caselles[i].setName(String.valueOf(i));
-        }
-        
-        
-        //Configuració dels valors inicials
+        //Configuracio dels valors inicials
         labelPunts.setText("Puntuacio: ");
         labelErrors.setText("Errors: ");
         textPunts.setText("0");
@@ -94,7 +75,6 @@ public class PartidaFrame extends javax.swing.JFrame {
         textPunts.setEditable(false);
         textErrors.setEditable(false);
 
-        
         //Listener del button OK
     	okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -102,7 +82,7 @@ public class PartidaFrame extends javax.swing.JFrame {
             }
         });
     	
-    	//Listener del button STOP
+    	//Listener del button Aturar
     	stopButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	stopButtonActionPerformed(evt);
@@ -119,71 +99,43 @@ public class PartidaFrame extends javax.swing.JFrame {
             }
         });
         
-        
-        //Un lisener per cada casella
-        caselles[0].getDocument().addDocumentListener(new DocumentListener() {
-        	final int me = 0;
-			public void removeUpdate(DocumentEvent e) {doOnRemove(me);}
-			public void insertUpdate(DocumentEvent e) {doOnInsert(me);}
-			public void changedUpdate(DocumentEvent arg0) {}
-        });
-        caselles[1].getDocument().addDocumentListener(new DocumentListener() {
-        	final int me = 1;
-			public void removeUpdate(DocumentEvent e) {doOnRemove(me);}
-			public void insertUpdate(DocumentEvent e) {doOnInsert(me);}
-			public void changedUpdate(DocumentEvent arg0) {}
-        });
-        caselles[2].getDocument().addDocumentListener(new DocumentListener() {
-        	final int me = 2;
-			public void removeUpdate(DocumentEvent e) {doOnRemove(me);}
-			public void insertUpdate(DocumentEvent e) {doOnInsert(me);}
-			public void changedUpdate(DocumentEvent arg0) {}
-        });
-        caselles[3].getDocument().addDocumentListener(new DocumentListener() {
-        	final int me = 3;
-			public void removeUpdate(DocumentEvent e) {doOnRemove(me);}
-			public void insertUpdate(DocumentEvent e) {doOnInsert(me);}
-			public void changedUpdate(DocumentEvent arg0) {}
-        });
-        caselles[4].getDocument().addDocumentListener(new DocumentListener() {
-        	final int me = 4;
-			public void removeUpdate(DocumentEvent e) {doOnRemove(me);}
-			public void insertUpdate(DocumentEvent e) {doOnInsert(me);}
-			public void changedUpdate(DocumentEvent arg0) {}
-        });
-        caselles[5].getDocument().addDocumentListener(new DocumentListener() {
-        	final int me = 5;
-			public void removeUpdate(DocumentEvent e) {doOnRemove(me);}
-			public void insertUpdate(DocumentEvent e) {doOnInsert(me);}
-			public void changedUpdate(DocumentEvent arg0) {}
-        });
-        caselles[6].getDocument().addDocumentListener(new DocumentListener() {
-        	final int me = 6;
-			public void removeUpdate(DocumentEvent e) {doOnRemove(me);}
-			public void insertUpdate(DocumentEvent e) {doOnInsert(me);}
-			public void changedUpdate(DocumentEvent arg0) {}
-        });
-        caselles[7].getDocument().addDocumentListener(new DocumentListener() {
-        	final int me = 7;
-			public void removeUpdate(DocumentEvent e) {doOnRemove(me);}
-			public void insertUpdate(DocumentEvent e) {doOnInsert(me);}
-			public void changedUpdate(DocumentEvent arg0) {}
-        });
-        caselles[8].getDocument().addDocumentListener(new DocumentListener() {
-        	final int me = 8;
-			public void removeUpdate(DocumentEvent e) {doOnRemove(me);}
-			public void insertUpdate(DocumentEvent e) {doOnInsert(me);}
-			public void changedUpdate(DocumentEvent arg0) {}
-        });
-        
+        //Quan creem la vista de partida encara no sabem caselles hi haura
+        //de moment inicialitzem la vista amb 0 caselles
+        setNumCaselles(0);
         
         //Configuracio de la distribucio dels components de la vista
         configPanellPrincipal();
         configPanellInfo();
-        configPanellCaselles();
         configPanellBotons();
         this.setContentPane(panellPrincipal);
-
+    }
+    
+    //Posa a la vista tantes caselles com indica el parametre numCaselles.
+    //Cada una d'aquestes caselles es un JTextField i es configuren degudament.
+    public void setNumCaselles(int numCaselles) {
+        caselles = new JTextField[numCaselles];
+        for (int i = 0; i < caselles.length; ++i) {
+        	caselles[i] = new JTextField();
+        	caselles[i].setHorizontalAlignment((int) JTextField.CENTER_ALIGNMENT);
+        	caselles[i].setName(String.valueOf(i));
+        	caselles[i].addKeyListener(new KeyListener() {
+    			public void keyReleased(KeyEvent e) {
+    				int pos = Integer.parseInt(e.getComponent().getName());
+    				String text = caselles[pos].getText();
+    				if (text.length() >= 1) {
+    					posicioSeleccionada = pos;
+    					deshabilitarCaselles();
+    				}
+    				else if (text.length() == 0) {
+    					posicioSeleccionada = -1;
+    					habilitarCaselles();
+    				}
+    			}
+    			public void keyTyped(KeyEvent e) {}
+    			public void keyPressed(KeyEvent e) {}
+            }); 
+        }
+    	configPanellCaselles();
     }
     
     // Operacio que s'executa quan es prem el button OK
@@ -200,6 +152,8 @@ public class PartidaFrame extends javax.swing.JFrame {
     	cp.CancelPressedPartida();
 	}
     
+    // Operacio que fixa una lletra en una posicio.
+    // Aquesta lletra ja no podra ser modificada
     public void afegirLletra(int pos, String lletra) {
     	caselles[pos].setText(lletra);
     	caselles[pos].setEditable(false);
@@ -209,28 +163,22 @@ public class PartidaFrame extends javax.swing.JFrame {
 		}
     }
     
-    // Operacio que s'executa que s'esborra algun caracter
-    // en alguna de les caselles
-	private void doOnRemove(int pos) {
-		if (caselles[pos].getText().length() == 0) {
-			posicioSeleccionada = -1;
-			for (int i = 0; i < caselles.length; ++i) {
-				String text = caselles[i].getText();
-				if (text.equals("")) caselles[i].setEditable(true);
+    //
+    private void deshabilitarCaselles() {
+		for (int i = 0; i < caselles.length; ++i) {
+			if (caselles[i].isEditable() && caselles[i].getText().isEmpty()) {
+				caselles[i].setEditable(false);
 			}
 		}
-	}
-	
-    // Operacio que s'executa que s'escriu text
-    // en alguna de les caselles
-	private void doOnInsert(int pos) {
-		posicioSeleccionada = pos;
-		if (caselles[pos].getText().length() == 1) {
-			for (int i = 0; i < caselles.length; ++i) {
-				if (i != pos) caselles[i].setEditable(false);
-			}
+    }
+    
+    //
+    private void habilitarCaselles() {
+		for (int i = 0; i < caselles.length; ++i) {
+			String text = caselles[i].getText();
+			if (text.equals("")) caselles[i].setEditable(true);
 		}
-	}
+    }
 
 	//Panell principal: conte a dins seu tots els altres panells
 	private void configPanellPrincipal() {
@@ -269,7 +217,7 @@ public class PartidaFrame extends javax.swing.JFrame {
         
         PanellInfoLayout.setHorizontalGroup(
         PanellInfoLayout.createSequentialGroup()
-	        .addGap(29)
+	        .addGap(margeHoritzontal)
 	        .addGroup(PanellInfoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 	        	.addComponent(labelPunts)
 	        	.addComponent(labelErrors))
@@ -277,13 +225,13 @@ public class PartidaFrame extends javax.swing.JFrame {
 	        .addGroup(PanellInfoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 	        	.addComponent(textPunts, longitudText, longitudText, longitudText)
 	        	.addComponent(textErrors, longitudText, longitudText, longitudText))
-	        .addGap(29)
+	        .addGap(margeHoritzontal)
         );    
             
             
         PanellInfoLayout.setVerticalGroup(
         PanellInfoLayout.createSequentialGroup()
-        .addGap(29)
+        .addGap(margeVertical)
         .addGroup(PanellInfoLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
         	.addGroup(PanellInfoLayout.createSequentialGroup()
         		.addComponent(labelPunts)
@@ -293,71 +241,58 @@ public class PartidaFrame extends javax.swing.JFrame {
             	.addComponent(textPunts, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
             	.addGap(16)
                 .addComponent(textErrors, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-	    .addGap(29)
+	    .addGap(margeVertical)
         );    
     }
 
     
     
-    //Panell Caselles: on es mostren les caselles (TextFields)
-    //que l'usuari haurà d'omplir
+    //Panell Caselles: on es mostren les caselles (TextFields) que l'usuari haura d'omplir
     private void configPanellCaselles() {
     	
+    	//Calculem la mida optima de les caselles
     	double numerador = ampladaFinestra - 2*margeHoritzontal;
-    	double denominador = numCaselles + (numCaselles + 1)*prcEspaiEntreCaselles;
-        int longCasella = (int) (numerador/denominador);
-        if (longCasella > 160) longCasella = 160;
+    	double denominador = caselles.length + (caselles.length + 1)*prcEspaiEntreCaselles;
+        int midaCasella = (int) (numerador/denominador);
+        if (midaCasella > midaMaxCasella) midaCasella = midaMaxCasella;
         
-        double longReal = numCaselles * longCasella + (numCaselles + 1) * longCasella * prcEspaiEntreCaselles;
-        int add = (int) ((numerador - longReal) / 2);
+        double longReal = caselles.length * midaCasella + (caselles.length + 1) * midaCasella * prcEspaiEntreCaselles;
+        int extra = (int) ((numerador - longReal) / 2);
         
-        int espai = (int) (longCasella * prcEspaiEntreCaselles);
+        int espai = (int) (midaCasella * prcEspaiEntreCaselles);
     	
-        panellCaselles.setMinimumSize(new Dimension(ampladaFinestra - 2*margeHoritzontal - 1, longCasella + espai));
+        panellCaselles.setMinimumSize(new Dimension(ampladaFinestra - 2*margeHoritzontal, midaCasella + espai));
+        //------        
         
+        //Inicialitzem el layout del panell de caselles
         GroupLayout PanellCasellesLayout = new GroupLayout(panellCaselles);
         panellCaselles.setLayout(PanellCasellesLayout);
         
+        //definim la part horitzontal del grup de caselles
+        SequentialGroup grupCasellesH = PanellCasellesLayout.createSequentialGroup().addGap(espai + extra);
+        for (int i = 0; i < caselles.length; ++i) {
+        	grupCasellesH = grupCasellesH.addComponent(caselles[i], midaCasella, midaCasella, midaCasella);
+        	grupCasellesH = grupCasellesH.addGap(espai);
+        }
+        
+        //posem la part horitzontal del grup de caselles en el layout
         PanellCasellesLayout.setHorizontalGroup(
         PanellCasellesLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
-        .addGroup(PanellCasellesLayout.createSequentialGroup()
-        	.addGap(espai + add)
-        	.addComponent(caselles[0], longCasella, longCasella, longCasella)
-        	.addGap(espai)
-        	.addComponent(caselles[1], longCasella, longCasella, longCasella)
-        	.addGap(espai)
-        	.addComponent(caselles[2], longCasella, longCasella, longCasella)
-        	.addGap(espai)
-        	.addComponent(caselles[3], longCasella, longCasella, longCasella)
-        	.addGap(espai)
-        	.addComponent(caselles[4], longCasella, longCasella, longCasella)
-        	.addGap(espai)
-        	.addComponent(caselles[5], longCasella, longCasella, longCasella)
-        	.addGap(espai)
-        	.addComponent(caselles[6], longCasella, longCasella, longCasella)
-        	.addGap(espai)
-        	.addComponent(caselles[7], longCasella, longCasella, longCasella)
-        	.addGap(espai)
-        	.addComponent(caselles[8], longCasella, longCasella, longCasella)
-        	.addGap(espai)
-        	//.addContainerGap(1000, 2000)
-        	)
+        	.addGroup(grupCasellesH)
         );
         
+        //definim la part vertical del grup de caselles
+        ParallelGroup grupCasellesV = PanellCasellesLayout.createParallelGroup(GroupLayout.Alignment.TRAILING);
+        for (int i = 0; i < caselles.length; ++i) {
+        	grupCasellesV = grupCasellesV.addComponent(caselles[i], midaCasella, midaCasella, midaCasella);
+        }
+
+        //posem la part vertical del grup de caselles en el layout
         PanellCasellesLayout.setVerticalGroup(
         PanellCasellesLayout.createSequentialGroup()
-        	.addGap(29)
-        	.addGroup(PanellCasellesLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-        		.addComponent(caselles[0], longCasella, longCasella, longCasella)
-        		.addComponent(caselles[1], longCasella, longCasella, longCasella)
-        		.addComponent(caselles[2], longCasella, longCasella, longCasella)
-        		.addComponent(caselles[3], longCasella, longCasella, longCasella)
-        		.addComponent(caselles[4], longCasella, longCasella, longCasella)
-        		.addComponent(caselles[5], longCasella, longCasella, longCasella)
-        		.addComponent(caselles[6], longCasella, longCasella, longCasella)
-        		.addComponent(caselles[7], longCasella, longCasella, longCasella)
-        		.addComponent(caselles[8], longCasella, longCasella, longCasella))
-        	.addGap(29)       
+        	.addGap(margeVertical)
+        	.addGroup(grupCasellesV)
+        	.addGap(margeVertical)       
         ); 
         
             
