@@ -21,6 +21,8 @@ public class UsuariRegistrat {
 	@Basic
 	private String pwd;
 	
+	public UsuariRegistrat(){}
+	
 	public UsuariRegistrat(String _nom, String _cognom, String _username, String _pwd) {
 		nom = _nom;
 		cognom = _cognom;

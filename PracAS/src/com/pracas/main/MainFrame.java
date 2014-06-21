@@ -19,21 +19,24 @@ public class MainFrame {
     
     public static void main(String[] args) {
 
-        //cp = new CtrlPresentation();
+        cp = new CtrlPresentation();
         
-        /* HARDCODE DATA INITIALIZER */ // TODO (words, categories)
-        /*AdapterFactory.getEstrategiaPenalitzacio().setPuntuacioEncert(100);
+        /* HARDCODE DATA INITIALIZER */
+        AdapterFactory.getEstrategiaPenalitzacio().setPuntuacioEncert(100);
         AdapterFactory.getEstrategiaPenalitzacio().setPuntuacioError(10);
         
         AdapterFactory.getEstrategiaNoPenalitzacio().setPuntuacioEncert(100);
         AdapterFactory.getEstrategiaNoPenalitzacio().setPuntuacioError(0);
         
-        Parametres.setNombreMaximErrors(10);*/
+        Parametres.setNombreMaximErrors(10);
         /* ------------------------ */
         
         DataCreatorStub dcs = new DataCreatorStub();
         dcs.execute();
         
-        //cp.showLogin();
+        //cp.showCrearPartida();
+        //cp.OKPressedSeleccionar();
+        
+        cp.showLogin();
     }
 }

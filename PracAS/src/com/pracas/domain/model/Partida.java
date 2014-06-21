@@ -7,9 +7,13 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import com.pracas.domain.controller.AdapterFactory;
+import com.pracas.domain.controller.DataFactory;
+import com.pracas.domain.controller.ICtrlCasella;
+import com.pracas.exception.CategoryHasNoWordsException;
 import com.pracas.exception.InvalidLetterException;
 
 @Entity
@@ -27,12 +31,14 @@ public class Partida {
 	private Paraula paraula;
 	@Transient
 	private IEstrategiaPuntuacio estrategiaPuntuacio;
-	@Transient
+	@OneToMany
 	private List<Casella> caselles;
 	@Transient
 	private Jugador jugador;
 
-	public Partida(int _idPartida, Categoria _categoria, Jugador _jugadorPartidaActual) {
+	public Partida() {}
+	
+	public Partida(int _idPartida, Categoria _categoria, Jugador _jugadorPartidaActual) throws CategoryHasNoWordsException {
 		super();
 		jugador = _jugadorPartidaActual;
 		acabada = false;
@@ -47,19 +53,27 @@ public class Partida {
 		paraula = _categoria.getParaulaAleatoria();
 		caselles = new ArrayList<Casella>();
 		int pos = 0;
+		System.out.println(paraula.getNom());
+		ICtrlCasella icasella = DataFactory.getCtrlCasella();
 		for (char ch : paraula.getNom().toCharArray()) {
+			System.out.println("ready to save: ");
 			try {
+				System.out.println("in try ...");
 				Casella c = new Casella(pos, Lletra.getLletraByChar(ch));
+				icasella.saveOrUpdateCasella(c);
 				caselles.add(c);
 				pos++;
-			} catch(InvalidLetterException ignore) {}
+			} catch(InvalidLetterException ignore) {
+				System.out.println("FAIL!");
+			}
 		}
+		System.out.println("completed save ... ?");
 		_jugadorPartidaActual.setPartidaActual(this);
 	}
 	
 	public DadesInicialsResponseType getDadesInicials() {
 		return (new DadesInicialsResponseType(
-						0, 
+						0,
 						Parametres.getNombreMaximErrors(), 
 						estrategiaPuntuacio.getPuntuacioEncert(), 
 						estrategiaPuntuacio.getPuntuacioError()
@@ -127,15 +141,5 @@ public class Partida {
 	public void setErrors(int errors) {
 		this.errors = errors;
 	}
-
-	/*public Jugador getJugadorPartidaActual() {
-		return jugadorPartidaActual;
-	}
-
-	public void setJugadorPartidaActual(Jugador jugadorPartidaActual) {
-		this.jugadorPartidaActual = jugadorPartidaActual;
-	}*/
-	
-	
 
 }

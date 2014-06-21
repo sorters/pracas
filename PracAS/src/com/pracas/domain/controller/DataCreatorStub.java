@@ -3,9 +3,12 @@ package com.pracas.domain.controller;
 import org.hibernate.Session;
 
 import com.pracas.domain.model.Categoria;
+import com.pracas.domain.model.DadesInicialsResponseType;
 import com.pracas.domain.model.Jugador;
 import com.pracas.domain.model.Paraula;
+import com.pracas.domain.model.Partida;
 import com.pracas.domain.model.UsuariRegistrat;
+import com.pracas.exception.CategoryHasNoWordsException;
 import com.pracas.persistence.PersistenceSessionFactory;
 
 public class DataCreatorStub {
@@ -97,11 +100,34 @@ public class DataCreatorStub {
 		Jugador j = new Jugador(u, "rohert@rohert.com");
 		s.save(j);
 
-		/*Partida p = new Partida(0, c1, j);
-		s.save(p);*/
+		s.getTransaction().commit();
+		PersistenceSessionFactory.getInstance().closeSession();
+		
+		/*
+		Partida p = null;
+		try {
+			p = new Partida(0, c1, j);
+		} catch (CategoryHasNoWordsException e) {
+			e.printStackTrace();
+		}
+		
+		s = PersistenceSessionFactory.getInstance().openSession();
+		s.beginTransaction();
+		s.save(p);
 		
 		s.getTransaction().commit();
 		PersistenceSessionFactory.getInstance().closeSession();
 		
+		
+		System.out.println("B&A-------------------------");
+		
+		s = PersistenceSessionFactory.getInstance().openSession();
+		s.beginTransaction();
+		Partida asdf = (Partida)s.get(Partida.class, 0);
+		s.getTransaction().commit();
+		PersistenceSessionFactory.getInstance().closeSession();
+		DadesInicialsResponseType dirt = asdf.getDadesInicials();
+		System.out.println(dirt.getNombreMaximErrors());
+		*/
 	}
 }

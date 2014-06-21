@@ -9,6 +9,7 @@ import com.pracas.domain.model.JugadaResponseType;
 import com.pracas.domain.model.Jugador;
 import com.pracas.domain.model.Parametres;
 import com.pracas.domain.model.Partida;
+import com.pracas.exception.CategoryHasNoWordsException;
 import com.pracas.exception.InvalidLetterException;
 import com.pracas.exception.NoCategoriesException;
 import com.pracas.exception.UserIsNotPlayerException;
@@ -39,7 +40,7 @@ public class CtrlJugarPartida {
 		return txConsultarCategories.getResultat();
 	}
 	
-	public DadesInicialsResponseType crearPartida(String category) {
+	public DadesInicialsResponseType crearPartida(String category) throws CategoryHasNoWordsException {
 		ICtrlCategoria icc = DataFactory.getCtrlCategoria();
 		ICtrlJugador icj = DataFactory.getCtrlJugador();
 		ICtrlPartida icp = DataFactory.getCtrlPartida();

@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Random;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.pracas.exception.CategoryHasNoWordsException;
 
 @Entity
 public class Categoria {
@@ -16,6 +19,8 @@ public class Categoria {
     @OneToMany
 	private List<Paraula> paraules;
 	
+    public Categoria() {}
+    
 	public Categoria(String _nom) {
 		nomC = _nom;
 		paraules = new ArrayList<Paraula>();
@@ -25,8 +30,13 @@ public class Categoria {
 		paraules.add(_p);
 	}
 	
-	public Paraula getParaulaAleatoria() {
-		int pos = new Random().nextInt(paraules.size());
+	public Paraula getParaulaAleatoria() throws CategoryHasNoWordsException {
+		int pos = 0;
+		if (paraules.size() > 0) {
+			pos = new Random().nextInt(paraules.size());
+		} else {
+			throw new CategoryHasNoWordsException();
+		}
 		return paraules.get(pos);
 	}
 	

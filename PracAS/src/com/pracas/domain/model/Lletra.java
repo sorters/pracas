@@ -43,7 +43,7 @@ public enum Lletra {
 	
 	public static Lletra getLletraByChar(char _ch) throws InvalidLetterException {
 		for (Lletra lletra : values()) {
-			if (_ch == lletra.getChar())
+			if (Character.toLowerCase(_ch) == lletra.getChar())
 				return lletra;
 		}
 		throw new InvalidLetterException();

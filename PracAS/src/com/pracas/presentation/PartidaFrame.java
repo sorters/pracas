@@ -1,6 +1,7 @@
 package com.pracas.presentation;
 
 import javax.swing.GroupLayout;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.pracas.domain.model.DadesInicialsResponseType;
 
 /**
  *
@@ -347,4 +350,11 @@ public class PartidaFrame extends javax.swing.JFrame {
     
     private JTextField[] caselles;
     // End of variables declaration
+
+
+	public void actualitzarVista(DadesInicialsResponseType dirt) {
+		// TODO Auto-generated method stu
+		
+		
+	}
 }

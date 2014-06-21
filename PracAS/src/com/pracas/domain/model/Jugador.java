@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="JUGADOR")
@@ -17,9 +19,11 @@ public class Jugador extends UsuariRegistrat {
 	private String email;
 	@ManyToOne
 	private Partida partidaActual;
-    @OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Partida> partidesJugades; 
 
+    public Jugador() {}
+	
 	public Jugador(UsuariRegistrat _usr, String _email) {
 		super(new String(_usr.getNom()), _usr.getCognom(), _usr.getUsername(), _usr.getPwd());
 		email = _email;

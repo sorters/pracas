@@ -9,5 +9,7 @@ public interface ICtrlCasella {
 	public Casella getCasella(int posicio, int idPartida);
 	
 	public Set<Casella> getAll();
+
+	int saveOrUpdateCasella(Casella _casella);
 	
 }

@@ -12,6 +12,8 @@ public class Paraula {
 	@Basic
 	private int nombreLletres;
 	
+	public Paraula() {}
+	
 	public Paraula(String _nom) {
 		nomP = _nom;
 		nombreLletres = nomP.length();
