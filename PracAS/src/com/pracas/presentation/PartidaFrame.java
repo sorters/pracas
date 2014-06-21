@@ -351,10 +351,4 @@ public class PartidaFrame extends javax.swing.JFrame {
     private JTextField[] caselles;
     // End of variables declaration
 
-
-	public void actualitzarVista(DadesInicialsResponseType dirt) {
-		// TODO Auto-generated method stu
-		
-		
-	}
 }
