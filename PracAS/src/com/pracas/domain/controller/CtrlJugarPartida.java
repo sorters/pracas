@@ -68,7 +68,7 @@ public class CtrlJugarPartida {
 			// TODO build a nice and cute message :D
 			String message = MessageFormat.format("{0}", "Has guanyat!");
 			IMailServiceAdapter imsa = AdapterFactory.getMailService();
-			imsa.sendMail(message);
+			imsa.sendMail(message, partida.getJugador().getEmail() );
 		}
 		
 		return response;
