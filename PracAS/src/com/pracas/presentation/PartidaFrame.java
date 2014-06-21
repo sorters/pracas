@@ -1,7 +1,5 @@
 package com.pracas.presentation;
 
-import javax.swing.GroupLayout;
-
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,14 +8,13 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.ParallelGroup;
 import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import com.pracas.domain.model.DadesInicialsResponseType;
 
 /**
  *
@@ -165,7 +162,7 @@ public class PartidaFrame extends javax.swing.JFrame {
     
     // Operacio que s'executa quan es prem el button Aturar
     protected void stopButtonActionPerformed(ActionEvent evt) {
-    	cp.CancelPressedPartida();
+    	cp.CancelPressedPartida(this);
 	}
     
     // Operacio que fixa una lletra en una posicio.

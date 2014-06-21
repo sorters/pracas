@@ -43,7 +43,13 @@ public class SeleccionarFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton2.setText("Cancel");
-
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        
+        
         jButton1.setText("OK");
         jButton1.setMaximumSize(new java.awt.Dimension(60, 29));
         jButton1.setMinimumSize(new java.awt.Dimension(60, 29));
@@ -91,10 +97,12 @@ public class SeleccionarFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
     	cp.OKPressedSeleccionar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    	cp.CancelPressedPartida(this);
+    }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments
      */

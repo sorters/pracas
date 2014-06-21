@@ -4,10 +4,13 @@
  */
 package com.pracas.presentation;
 
+import java.awt.Frame;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JFrame;
 
 import com.pracas.domain.controller.CtrlJugarPartida;
 import com.pracas.domain.model.DadesInicialsResponseType;
@@ -18,6 +21,7 @@ import com.pracas.exception.NoCategoriesException;
 import com.pracas.exception.UserIsNotPlayerException;
 import com.pracas.exception.UsernameNotExistsException;
 import com.pracas.exception.WrongPasswordException;
+import com.pracas.persistence.PersistenceSessionFactory;
 
 /**
  *
@@ -135,8 +139,9 @@ public class CtrlPresentation {
 		}
     }
     
-    public void CancelPressedPartida() {
-    	// TODO
+    public void CancelPressedPartida(JFrame frame) {
+    	frame.dispose();
+    	System.exit(0);
     }
     
 }
