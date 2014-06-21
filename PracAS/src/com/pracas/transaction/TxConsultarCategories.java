@@ -2,7 +2,6 @@ package com.pracas.transaction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import com.pracas.domain.controller.DataFactory;
 import com.pracas.domain.controller.ICtrlCategoria;

@@ -1,12 +1,9 @@
 package com.pracas.persistence;
 
-import java.util.Set;
-
 import org.hibernate.Session;
 
 import com.pracas.domain.controller.ICtrlJugador;
 import com.pracas.domain.model.Jugador;
-import com.pracas.domain.model.Partida;
 
 public class CtrlJugadorDB implements ICtrlJugador {
 
@@ -32,12 +29,5 @@ public class CtrlJugadorDB implements ICtrlJugador {
 		s.close();
 		return 0;
 	}
-
-	@Override
-	public Set<Jugador> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 }

@@ -17,7 +17,7 @@ public class TxLogin {
 	}
 
 	public void executar() throws UsernameNotExistsException, WrongPasswordException {
-		ICtrlUsuariRegistrat icur = DataFactory.getInstance().getCtrlUsuariRegistrat();
+		ICtrlUsuariRegistrat icur = DataFactory.getCtrlUsuariRegistrat();
 		UsuariRegistrat usuari = icur.getUsuariRegistrat(this.userN);
 		if (!usuari.checkPassword(this.passwd)) {
 			throw new WrongPasswordException();

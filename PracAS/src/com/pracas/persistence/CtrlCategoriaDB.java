@@ -2,9 +2,6 @@ package com.pracas.persistence;
 
 import java.util.List;
 
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
-
 import org.hibernate.Session;
 
 import com.pracas.domain.controller.ICtrlCategoria;
