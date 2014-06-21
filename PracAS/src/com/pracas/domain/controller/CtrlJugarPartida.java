@@ -24,6 +24,8 @@ public class CtrlJugarPartida {
 	private String userN;
 	private int idPartida;
 	
+	private Partida partida;
+	
 	public void authenticate(String userN, String passwd) throws UsernameNotExistsException, WrongPasswordException, UserIsNotPlayerException {
 		TxLogin txLogin = new TxLogin(userN, passwd);
 		txLogin.executar();
@@ -50,15 +52,15 @@ public class CtrlJugarPartida {
 		
 		this.idPartida = Parametres.getIdPartida();
 
-		Partida partida = new Partida(this.idPartida, categoria, jugador);
+		partida = new Partida(this.idPartida, categoria, jugador);
 		icp.saveOrUpdatePartida(partida);
 		
 		return partida.getDadesInicials();
 	}
 	
 	public JugadaResponseType ferJugada(int pos, char ch) throws InvalidLetterException {
-		ICtrlPartida icp = DataFactory.getCtrlPartida();
-		Partida partida = icp.getPartida(idPartida);
+		//ICtrlPartida icp = DataFactory.getCtrlPartida();
+		//Partida partida = icp.getPartida(idPartida);
 		
 		JugadaResponseType response = partida.ferJugada(pos, ch);
 		

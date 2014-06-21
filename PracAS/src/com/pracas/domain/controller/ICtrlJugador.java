@@ -11,5 +11,7 @@ public interface ICtrlJugador {
 	public Jugador getJugador(String username);
 	
 	public Set<Jugador> getAll();
+
+	int saveOrUpdateJugador(Jugador _jugador);
 	
 }

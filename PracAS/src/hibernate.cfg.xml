@@ -23,7 +23,6 @@
 	    <mapping class="com.pracas.domain.model.Partida"/>
 		<mapping class="com.pracas.domain.model.UsuariRegistrat"/>
 	    <mapping class="com.pracas.domain.model.Jugador"/>
-
 	    
     </session-factory>
 </hibernate-configuration>

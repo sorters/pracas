@@ -1,7 +1,9 @@
 package com.pracas.domain.model;
 
+
 public class EstrategiaPenalitzacio implements IEstrategiaPuntuacio {
 
+	private int idPenalitzacio;
 	private int puntuacioEncert;
 	private int puntuacioError;
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -13,6 +14,7 @@ import javax.persistence.Transient;
 import com.pracas.domain.controller.AdapterFactory;
 import com.pracas.domain.controller.DataFactory;
 import com.pracas.domain.controller.ICtrlCasella;
+import com.pracas.domain.controller.ICtrlPartida;
 import com.pracas.exception.CategoryHasNoWordsException;
 import com.pracas.exception.InvalidLetterException;
 
@@ -31,7 +33,7 @@ public class Partida {
 	private Paraula paraula;
 	@Transient
 	private IEstrategiaPuntuacio estrategiaPuntuacio;
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Casella> caselles;
 	@Transient
 	private Jugador jugador;
@@ -51,29 +53,26 @@ public class Partida {
 			estrategiaPuntuacio = AdapterFactory.getEstrategiaNoPenalitzacio();
 		}
 		paraula = _categoria.getParaulaAleatoria();
+		System.out.println(paraula.getNom());
 		caselles = new ArrayList<Casella>();
 		int pos = 0;
 		System.out.println(paraula.getNom());
 		ICtrlCasella icasella = DataFactory.getCtrlCasella();
 		for (char ch : paraula.getNom().toCharArray()) {
-			System.out.println("ready to save: ");
 			try {
-				System.out.println("in try ...");
 				Casella c = new Casella(pos, Lletra.getLletraByChar(ch));
 				icasella.saveOrUpdateCasella(c);
 				caselles.add(c);
 				pos++;
-			} catch(InvalidLetterException ignore) {
-				System.out.println("FAIL!");
-			}
+			} catch(InvalidLetterException ignore) {}
 		}
-		System.out.println("completed save ... ?");
 		_jugadorPartidaActual.setPartidaActual(this);
 	}
 	
 	public DadesInicialsResponseType getDadesInicials() {
 		return (new DadesInicialsResponseType(
 						0,
+						this.caselles.size(),
 						Parametres.getNombreMaximErrors(), 
 						estrategiaPuntuacio.getPuntuacioEncert(), 
 						estrategiaPuntuacio.getPuntuacioError()
@@ -104,6 +103,8 @@ public class Partida {
 		int puntuacio = estrategiaPuntuacio.calcularPuntuacio(numEncerts, errors);
 		
 		if (acabada) {
+			ICtrlPartida icp = DataFactory.getCtrlPartida();
+			icp.saveOrUpdatePartida(this);
 			this.jugador.finalitzarPartida(); // TODO check with others if necessary (forces player as attribute)
 		}
 		

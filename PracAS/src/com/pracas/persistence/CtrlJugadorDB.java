@@ -6,6 +6,7 @@ import org.hibernate.Session;
 
 import com.pracas.domain.controller.ICtrlJugador;
 import com.pracas.domain.model.Jugador;
+import com.pracas.domain.model.Partida;
 
 public class CtrlJugadorDB implements ICtrlJugador {
 
@@ -20,6 +21,16 @@ public class CtrlJugadorDB implements ICtrlJugador {
 		Jugador response = (Jugador)s.get(Jugador.class, username);
 		s.close();
 		return response;
+	}
+	
+	@Override
+	public int saveOrUpdateJugador(Jugador _jugador) {
+		Session s = PersistenceSessionFactory.getInstance().openSession();
+		s.beginTransaction();
+		s.saveOrUpdate(_jugador);
+		s.getTransaction().commit();
+		s.close();
+		return 0;
 	}
 
 	@Override

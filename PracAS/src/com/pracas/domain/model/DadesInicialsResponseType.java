@@ -3,13 +3,15 @@ package com.pracas.domain.model;
 public class DadesInicialsResponseType {
 
 	private int puntuacioInicial;
+	private int nombreCaselles;
 	private int nombreMaximErrors;
 	private int puntuacioPerEncert;
 	private int puntuacioPerError;
 	
-	public DadesInicialsResponseType(int puntuacioInicial, int nombreMaximErrors, int puntuacioPerEncert, int puntuacioPerError) {
+	public DadesInicialsResponseType(int puntuacioInicial, int nombreCaselles, int nombreMaximErrors, int puntuacioPerEncert, int puntuacioPerError) {
 		super();
 		this.puntuacioInicial = puntuacioInicial;
+		this.nombreCaselles = nombreCaselles;
 		this.nombreMaximErrors = nombreMaximErrors;
 		this.puntuacioPerEncert = puntuacioPerEncert;
 		this.puntuacioPerError = puntuacioPerError;
@@ -21,6 +23,14 @@ public class DadesInicialsResponseType {
 
 	public void setPuntuacioInicial(int puntuacioInicial) {
 		this.puntuacioInicial = puntuacioInicial;
+	}
+
+	public int getNombreCaselles() {
+		return nombreCaselles;
+	}
+
+	public void setNombreCaselles(int nombreCaselles) {
+		this.nombreCaselles = nombreCaselles;
 	}
 
 	public int getNombreMaximErrors() {

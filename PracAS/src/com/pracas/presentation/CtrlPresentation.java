@@ -123,7 +123,7 @@ public class CtrlPresentation {
 			DadesInicialsResponseType dirt = cjp.crearPartida(_category);
 			partidaFrame.actualitzarVista(dirt);
 			crearPartidaFrame.dispose();
-			showPartida(3);
+			showPartida(dirt.getNombreCaselles());
 		} catch (CategoryHasNoWordsException e) {
 			String msg = "No s'han trobat paraules en aquesta categoria."; 
 			showMessage(msg);

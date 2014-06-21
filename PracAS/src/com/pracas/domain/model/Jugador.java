@@ -11,6 +11,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.pracas.domain.controller.DataFactory;
+import com.pracas.domain.controller.ICtrlJugador;
+
 @Entity
 @Table(name="JUGADOR")
 public class Jugador extends UsuariRegistrat {
@@ -44,6 +47,8 @@ public class Jugador extends UsuariRegistrat {
 	public void finalitzarPartida() {
 		partidesJugades.add(partidaActual);
 		partidaActual = null;
+		ICtrlJugador icj = DataFactory.getCtrlJugador();
+		icj.saveOrUpdateJugador(this);
 	}
 	
 	public String getEmail() {

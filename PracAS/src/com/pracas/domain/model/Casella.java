@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,12 +22,16 @@ public class Casella {
 	private int idCasella;
 	@Basic
 	private int posicio;
-	@Transient
+	@Enumerated(EnumType.STRING)
 	private Lletra lletraCorrecta;
 	@Transient
 	private boolean encert;
 	@Transient
 	private List<Lletra> lletresErronies;
+	
+	public Casella() {
+		lletresErronies = new ArrayList<Lletra>();
+	}
 	
 	public Casella(int _posicio, Lletra _lletraCorrecta) {
 		super();
@@ -37,8 +43,10 @@ public class Casella {
 	
 	public boolean intentarLletra(Lletra lletra) {
 		if (lletra == lletraCorrecta) {
+			System.out.println("ENCERT ---");
 			encert = true;
 		} else {
+			System.out.println("FAIL ---");
 			lletresErronies.add(lletra);
 		}
 		return encert;
