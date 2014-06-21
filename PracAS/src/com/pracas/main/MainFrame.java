@@ -5,7 +5,6 @@
 package com.pracas.main;
 
 import com.pracas.domain.controller.AdapterFactory;
-import com.pracas.domain.controller.DataCreatorStub;
 import com.pracas.domain.model.Parametres;
 import com.pracas.presentation.CtrlPresentation;
 
