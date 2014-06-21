@@ -1,21 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pracas.presentation;
 
 import java.awt.Dimension;
 import java.awt.Insets;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author arkey
  */
-public class MessageFrame extends javax.swing.JFrame {
+public class MessageFrame extends JFrame {
 	
 	private static final double relacio = 1.618034;
 	private int alturaFinestra = 222;
@@ -24,7 +23,7 @@ public class MessageFrame extends javax.swing.JFrame {
 	private static final int margeVertical = 29;
 	private static final int margeHoritzontal = 29;
 	
-	private static final int margeHortText = 10;
+	private static final int margeHorText = 10;
 	private static final int margeVertText = 10;
     private static final int longButtons = 155;
 
@@ -48,10 +47,10 @@ public class MessageFrame extends javax.swing.JFrame {
      */
     private void initComponents() {
 
-    	okButton = new javax.swing.JButton();
-        textMsg = new javax.swing.JTextArea();
+    	okButton = new JButton();
+        textMsg = new JTextArea();
         
-        textMsg.setMargin(new Insets(margeVertText, margeHortText, margeVertText, margeHortText));
+        textMsg.setMargin(new Insets(margeVertText, margeHorText, margeVertText, margeHorText));
         textMsg.setEditable(false);
         textMsg.setLineWrap(true);
         textMsg.setWrapStyleWord(true);
@@ -59,9 +58,9 @@ public class MessageFrame extends javax.swing.JFrame {
         textMsg.setMaximumSize(new Dimension(ampladaText, 100));       
 
         okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        okButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                okButtonActionPerformed(evt);
             }
         });
         
@@ -91,12 +90,12 @@ public class MessageFrame extends javax.swing.JFrame {
         pack();
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void okButtonActionPerformed(ActionEvent evt) {
         this.setVisible(false);
     }
 
     // Variables declaration
-    private javax.swing.JButton okButton;
-    private javax.swing.JTextArea textMsg;
+    private JButton okButton;
+    private JTextArea textMsg;
     // End of variables declaration
 }
