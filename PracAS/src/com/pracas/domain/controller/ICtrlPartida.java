@@ -1,7 +1,6 @@
 package com.pracas.domain.controller;
 
-import java.util.Set;
-
+import java.util.List;
 import com.pracas.domain.model.Partida;
 
 public interface ICtrlPartida {
@@ -10,6 +9,8 @@ public interface ICtrlPartida {
 	
 	public int saveOrUpdatePartida(Partida partida);
 	
-	public Set<Partida> getAll();
+	public List<Partida> getAll();
+	
+	public int getLastId();
 	
 }

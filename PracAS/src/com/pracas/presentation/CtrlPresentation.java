@@ -88,18 +88,24 @@ public class CtrlPresentation {
     public void OKPressedPartida(int pos, char lletra) {
     	try {
 			JugadaResponseType info = cjp.ferJugada(pos, lletra);
+			partidaFrame.setPuntuacio(info.getPuntuacio());
+			partidaFrame.setNumError(info.getErrors());
 			if (info.isAcabada() && !info.isGuanyada()) {
 				String msg = "Llastima! No has endevinat la paraula... Mes sort la propera vegada."; 
 				showMessage(msg);
 			}
 			else if (info.isAcabada()) {
+				if (info.isEncert()) partidaFrame.afegirLletra(pos, lletra);
 				String msg = "Felicitats has endevinat la paraula. T'hem enviat un correu. :)"; 
 				showMessage(msg);
 			}
 			else {
-				partidaFrame.setPuntuacio(info.getPuntuacio());
-				partidaFrame.setNumError(info.getErrors());
-				if (info.isEncert()) partidaFrame.afegirLletra(pos, lletra);	
+				if (info.isEncert()) {
+					partidaFrame.afegirLletra(pos, lletra);
+				} else {
+					String msg = "La lletra és incorrecta."; 
+					showMessage(msg);
+				}
 			}
 		} catch (InvalidLetterException e) {
 			showMessage("La lletra introduida no es un caracter valid!");
@@ -121,7 +127,6 @@ public class CtrlPresentation {
     public void OKPressedCrearPartida(String _category) {
     	try {
 			DadesInicialsResponseType dirt = cjp.crearPartida(_category);
-			partidaFrame.actualitzarVista(dirt);
 			crearPartidaFrame.dispose();
 			showPartida(dirt.getNombreCaselles());
 		} catch (CategoryHasNoWordsException e) {

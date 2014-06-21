@@ -1,5 +1,7 @@
 package com.pracas.domain.model;
 
+import com.pracas.domain.controller.DataFactory;
+
 public class Parametres {
 
 	private static Parametres instance;
@@ -25,7 +27,7 @@ public class Parametres {
 	}
 	
 	public static int getIdPartida() {
-		idPartida++;
+		idPartida = DataFactory.getCtrlPartida().getLastId();
 		return idPartida;
 	}
 	public static void setIdPartida(int _idPartida) {

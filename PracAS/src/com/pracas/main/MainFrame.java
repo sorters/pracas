@@ -28,14 +28,11 @@ public class MainFrame {
         AdapterFactory.getEstrategiaNoPenalitzacio().setPuntuacioEncert(100);
         AdapterFactory.getEstrategiaNoPenalitzacio().setPuntuacioError(0);
         
-        Parametres.setNombreMaximErrors(10);
+        Parametres.setNombreMaximErrors(2);
         /* ------------------------ */
         
-        DataCreatorStub dcs = new DataCreatorStub();
-        dcs.execute();
-        
-        //cp.showCrearPartida();
-        //cp.OKPressedSeleccionar();
+        //DataCreatorStub dcs = new DataCreatorStub();
+        //dcs.execute();
         
         cp.showLogin();
     }

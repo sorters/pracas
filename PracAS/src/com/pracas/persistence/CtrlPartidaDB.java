@@ -1,6 +1,6 @@
 package com.pracas.persistence;
 
-import java.util.Set;
+import java.util.List;
 
 import org.hibernate.Session;
 
@@ -32,9 +32,17 @@ public class CtrlPartidaDB implements ICtrlPartida {
 	}
 	
 	@Override
-	public Set<Partida> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Partida> getAll() {
+		Session s = PersistenceSessionFactory.getInstance().openSession();
+		List<Partida> response = s.createCriteria(Partida.class).list();
+		return response;
 	}
+
+	@Override
+	public int getLastId() {
+		return this.getAll().size();
+	}
+	
+	
 
 }
