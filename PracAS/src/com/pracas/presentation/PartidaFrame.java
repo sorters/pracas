@@ -162,7 +162,7 @@ public class PartidaFrame extends javax.swing.JFrame {
     
     // Operacio que s'executa quan es prem el button Aturar
     protected void stopButtonActionPerformed(ActionEvent evt) {
-    	cp.CancelPressedPartida(this);
+    	cp.AturarPressedPartida(this);
 	}
     
     // Operacio que fixa una lletra en una posicio.

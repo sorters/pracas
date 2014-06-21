@@ -123,7 +123,7 @@ public class LoginFrame extends javax.swing.JFrame {
 			password = new String(pwdField.getPassword());
 		}
 		if (("".equals(username)) || ("".equals(password))) {
-			cp.showMessage("Username or password missing");
+			cp.showMessage("Username or password missing", false, null);
 		} else {
 			cp.OKPressedAuthenticate(username, password);
 		}

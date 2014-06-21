@@ -27,6 +27,8 @@ public class MessageFrame extends JFrame {
 	private static final int margeVertText = 10;
     private static final int longButtons = 155;
 
+    private boolean endOnClose;
+    private JFrame parent;
 
     /**
      * Creates new form MessageFrame
@@ -34,13 +36,20 @@ public class MessageFrame extends JFrame {
     public MessageFrame() {
 		this.setMinimumSize(new Dimension(ampladaFinestra, alturaFinestra));
 		this.setTitle("Missatge");
-        this.setResizable(false);        
+        this.setResizable(false);   
+        this.endOnClose = false;
         initComponents();
     }
     
-    public void setMessage(String msg) {
-    	textMsg.setText(msg);
+    public void configMessage(String _msg, boolean _endOncLose, JFrame _parent) {
+    	textMsg.setText(_msg);
+    	endOnClose = _endOncLose;
+    	parent = _parent;
     }
+    
+    /*public void setMessage(String msg) {
+    	textMsg.setText(msg);
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,6 +100,11 @@ public class MessageFrame extends JFrame {
     }
     
     private void okButtonActionPerformed(ActionEvent evt) {
+        if (endOnClose) {
+        	this.dispose();
+        	parent.dispose();
+        	System.exit(0);
+        }
         this.setVisible(false);
     }
 

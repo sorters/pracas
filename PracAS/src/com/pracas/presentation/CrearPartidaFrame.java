@@ -7,6 +7,8 @@ package com.pracas.presentation;
 import java.util.List;
 
 import javax.swing.UIManager;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -46,7 +48,6 @@ public class CrearPartidaFrame extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<String>();
         model = new javax.swing.DefaultListModel<String>();
         
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton2.setText("Cancel");
@@ -56,8 +57,8 @@ public class CrearPartidaFrame extends javax.swing.JFrame {
             }
         });
         
-        
         jButton1.setText("OK");
+        jButton1.setEnabled(false);
         jButton1.setMaximumSize(new java.awt.Dimension(60, 29));
         jButton1.setMinimumSize(new java.awt.Dimension(60, 29));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +66,13 @@ public class CrearPartidaFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        
+        jList1.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				jButton1.setEnabled(true);
+			}
+		});
 
         jList1.setModel(model);
         jScrollPane1.setViewportView(jList1);

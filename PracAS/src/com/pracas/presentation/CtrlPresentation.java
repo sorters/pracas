@@ -62,8 +62,8 @@ public class CtrlPresentation {
     	partidaFrame.setVisible(true);
     }
     
-    public void showMessage(String msg) {
-    	messageFrame.setMessage(msg);
+    public void showMessage(String msg, boolean endOnClose, JFrame parent) {
+    	messageFrame.configMessage(msg, endOnClose, parent);
     	messageFrame.setVisible(true);
     }
     
@@ -75,13 +75,13 @@ public class CtrlPresentation {
             //showPartida(cjp.);
         } catch (UsernameNotExistsException ex) {
 			String msg = MessageFormat.format("Error d''autenticació: El nom d''usuari {0} no existeix.", username); 
-			showMessage(msg);
+			showMessage(msg, false, null);
         } catch (WrongPasswordException ex) {
 			String msg = "Error d'autenticació: La contrassenya és incorrecta."; 
-			showMessage(msg);
+			showMessage(msg, false, null);
         } catch (UserIsNotPlayerException ex) {
 			String msg = MessageFormat.format("Error d''autenticació: L''usuari {0} no és un jugador.", username); 
-			showMessage(msg);
+			showMessage(msg, false, null);
         }
     }
     
@@ -92,25 +92,23 @@ public class CtrlPresentation {
 			partidaFrame.setNumError(info.getErrors());
 			if (info.isAcabada() && !info.isGuanyada()) {
 				String msg = "Llastima! No has endevinat la paraula... Mes sort la propera vegada."; 
-				showMessage(msg);
-	            CancelPressedPartida(partidaFrame);
+				showMessage(msg, true, partidaFrame);
 			}
 			else if (info.isAcabada()) {
 				if (info.isEncert()) partidaFrame.afegirLletra(pos, lletra);
 				String msg = "Felicitats, has endevinat la paraula. T'hem enviat un correu. :)"; 
-				showMessage(msg);
-	            CancelPressedPartida(partidaFrame);
+				showMessage(msg, true, partidaFrame);
 			}
 			else {
 				if (info.isEncert()) {
 					partidaFrame.afegirLletra(pos, lletra);
 				} else {
 					String msg = "La lletra és incorrecta."; 
-					showMessage(msg);
+					showMessage(msg, false, null);
 				}
 			}
 		} catch (InvalidLetterException e) {
-			showMessage("La lletra introduida no es un caracter valid!");
+			showMessage("La lletra introduida no es un caracter valid!", false, null);
 		}
     }
     
@@ -122,8 +120,7 @@ public class CtrlPresentation {
             showCrearPartida();
 		} catch (NoCategoriesException e) {
 			String msg = "No s'han trobat categories disponibles."; 
-			showMessage(msg);
-            CancelPressedPartida(seleccionarFrame);
+			showMessage(msg, true, seleccionarFrame);
 		}
     }
     
@@ -134,8 +131,13 @@ public class CtrlPresentation {
 			showPartida(dirt.getNombreCaselles());
 		} catch (CategoryHasNoWordsException e) {
 			String msg = "No s'han trobat paraules en aquesta categoria."; 
-			showMessage(msg);
+			showMessage(msg, false, null);
 		}
+    }
+    
+    public void AturarPressedPartida(JFrame frame) {
+    	String msg = "La partida ha estat guardada."; 
+		showMessage(msg, true, partidaFrame);
     }
     
     public void CancelPressedPartida(JFrame frame) {
