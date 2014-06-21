@@ -4,11 +4,8 @@
  */
 package com.pracas.presentation;
 
-import java.awt.Frame;
 import java.text.MessageFormat;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 
@@ -21,7 +18,6 @@ import com.pracas.exception.NoCategoriesException;
 import com.pracas.exception.UserIsNotPlayerException;
 import com.pracas.exception.UsernameNotExistsException;
 import com.pracas.exception.WrongPasswordException;
-import com.pracas.persistence.PersistenceSessionFactory;
 
 /**
  *
@@ -78,13 +74,13 @@ public class CtrlPresentation {
             showSeleccionar();
             //showPartida(cjp.);
         } catch (UsernameNotExistsException ex) {
-			String msg = MessageFormat.format("Error d'autenticació: El nom d'usuari {0} no existeix.", username); 
+			String msg = MessageFormat.format("Error d''autenticació: El nom d''usuari {0} no existeix.", username); 
 			showMessage(msg);
         } catch (WrongPasswordException ex) {
 			String msg = "Error d'autenticació: La contrassenya és incorrecta."; 
 			showMessage(msg);
         } catch (UserIsNotPlayerException ex) {
-			String msg = MessageFormat.format("Error d'autenticació: L'usuari {0} no és un jugador.", username); 
+			String msg = MessageFormat.format("Error d''autenticació: L''usuari {0} no és un jugador.", username); 
 			showMessage(msg);
         }
     }
@@ -97,11 +93,13 @@ public class CtrlPresentation {
 			if (info.isAcabada() && !info.isGuanyada()) {
 				String msg = "Llastima! No has endevinat la paraula... Mes sort la propera vegada."; 
 				showMessage(msg);
+	            CancelPressedPartida(partidaFrame);
 			}
 			else if (info.isAcabada()) {
 				if (info.isEncert()) partidaFrame.afegirLletra(pos, lletra);
-				String msg = "Felicitats has endevinat la paraula. T'hem enviat un correu. :)"; 
+				String msg = "Felicitats, has endevinat la paraula. T'hem enviat un correu. :)"; 
 				showMessage(msg);
+	            CancelPressedPartida(partidaFrame);
 			}
 			else {
 				if (info.isEncert()) {
@@ -125,6 +123,7 @@ public class CtrlPresentation {
 		} catch (NoCategoriesException e) {
 			String msg = "No s'han trobat categories disponibles."; 
 			showMessage(msg);
+            CancelPressedPartida(seleccionarFrame);
 		}
     }
     
