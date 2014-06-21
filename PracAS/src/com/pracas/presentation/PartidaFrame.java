@@ -40,6 +40,7 @@ public class PartidaFrame extends javax.swing.JFrame {
 	
 	private int posicioSeleccionada = -1;
     private CtrlPresentation cp;
+    int mm;
 
 	
     /**
