@@ -35,15 +35,7 @@ public class MessageFrame extends javax.swing.JFrame {
     public MessageFrame() {
 		this.setMinimumSize(new Dimension(ampladaFinestra, alturaFinestra));
 		this.setTitle("Missatge");
-        this.setResizable(false);
-        this.addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent e) {
-                alturaFinestra = e.getComponent().getSize().height;
-                ampladaFinestra = e.getComponent().getSize().width;
-                configTextArea();
-            }
-        });        
-        
+        this.setResizable(false);        
         initComponents();
     }
     
@@ -63,7 +55,8 @@ public class MessageFrame extends javax.swing.JFrame {
         textMsg.setEditable(false);
         textMsg.setLineWrap(true);
         textMsg.setWrapStyleWord(true);
-        configTextArea();        
+        int ampladaText = ampladaFinestra - 2*margeHoritzontal;     
+        textMsg.setMaximumSize(new Dimension(ampladaText, 100));       
 
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -96,11 +89,6 @@ public class MessageFrame extends javax.swing.JFrame {
             .addComponent(okButton)
         );
         pack();
-    }
-    
-    private void configTextArea() {
-        int ampladaText = ampladaFinestra - 2*margeHoritzontal;     
-        textMsg.setMaximumSize(new Dimension(ampladaText, 100));
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
