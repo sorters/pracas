@@ -5,6 +5,7 @@
 package com.pracas.main;
 
 import com.pracas.domain.controller.AdapterFactory;
+import com.pracas.domain.controller.DataCreatorStub;
 import com.pracas.domain.model.Parametres;
 import com.pracas.presentation.CtrlPresentation;
 
@@ -30,8 +31,8 @@ public class MainFrame {
         Parametres.setNombreMaximErrors(2);
         /* ------------------------ */
         
-        //DataCreatorStub dcs = new DataCreatorStub();
-        //dcs.execute();
+        DataCreatorStub dcs = new DataCreatorStub();
+        dcs.execute();
         
         cp.showLogin();
     }

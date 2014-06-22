@@ -17,6 +17,8 @@ public class DataCreatorStub {
 		
 		Categoria c1 = new Categoria("NOMS");
 		Categoria c2 = new Categoria("ADJECTIUS");
+		Categoria c3 = new Categoria("SENSE PARAULES");
+		s.save(c3);
 		
 		Paraula p1 = new Paraula("GOS");
 		s.save(p1);
@@ -86,7 +88,7 @@ public class DataCreatorStub {
 		s = PersistenceSessionFactory.getInstance().openSession();
 		s.beginTransaction();
 		
-		Jugador j = new Jugador(u, "rohert@rohert.com");
+		Jugador j = new Jugador(u, "b3ns0rt3r@gmail.com");
 		s.save(j);
 
 		s.getTransaction().commit();
