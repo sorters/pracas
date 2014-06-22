@@ -136,6 +136,7 @@ public class CtrlPresentation {
     }
     
     public void AturarPressedPartida(JFrame frame) {
+    	cjp.aturarPartida();
     	String msg = "La partida ha estat guardada."; 
 		showMessage(msg, true, partidaFrame);
     }

@@ -151,6 +151,9 @@ public class Partida {
 		this.jugador = jugador;
 	}
 	
+	public String getNomParaula() {
+		return this.paraula.getNom();
+	}
 	
 
 }

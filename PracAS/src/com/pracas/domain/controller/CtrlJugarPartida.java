@@ -59,19 +59,31 @@ public class CtrlJugarPartida {
 	}
 	
 	public JugadaResponseType ferJugada(int pos, char ch) throws InvalidLetterException {
-		//ICtrlPartida icp = DataFactory.getCtrlPartida();
-		//Partida partida = icp.getPartida(idPartida);
 		
 		JugadaResponseType response = partida.ferJugada(pos, ch);
 		
 		if (response.isGuanyada()) {
-			// TODO build a nice and cute message :D
-			String message = MessageFormat.format("{0}", "Has guanyat!");
+			int errors = response.getErrors();
+			String msgErrors = "no has comès cap equivocació";
+			if (errors == 1) {
+				msgErrors = "només has comès una equivocació";
+			} else if (errors > 1) {
+				msgErrors = MessageFormat.format("has comès {0} equivocacions", errors);
+			}
+			String message = MessageFormat.format("Felicitats {3}, has guanyat! Has endevinat la paraula {0}, {1} i la teva puntuació és {2}! :D",
+													partida.getNomParaula(),
+													msgErrors,
+													response.getPuntuacio(),
+													partida.getJugador().getNom());
 			IMailServiceAdapter imsa = AdapterFactory.getMailService();
 			imsa.sendMail(message, partida.getJugador().getEmail() );
 		}
-		
 		return response;
+	}
+
+	public void aturarPartida() {
+		ICtrlPartida icp = DataFactory.getCtrlPartida();
+		icp.saveOrUpdatePartida(partida);
 	}
 	
 	
