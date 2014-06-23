@@ -105,7 +105,7 @@ public class Partida {
 		if (acabada) {
 			ICtrlPartida icp = DataFactory.getCtrlPartida();
 			icp.saveOrUpdatePartida(this);
-			this.jugador.finalitzarPartida(); // TODO check with others if necessary (forces player as attribute)
+			this.jugador.finalitzarPartida();
 		}
 		
 		return new JugadaResponseType(encert, acabada, guanyada, puntuacio, errors);

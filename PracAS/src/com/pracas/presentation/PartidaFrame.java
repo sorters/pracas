@@ -16,10 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author arkey
- */
 public class PartidaFrame extends javax.swing.JFrame {
 		
 	private static final double relacio = 1.618034;

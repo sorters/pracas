@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.pracas.main;
 
 import com.pracas.domain.controller.AdapterFactory;
@@ -9,10 +6,6 @@ import com.pracas.domain.controller.DataCreatorStub;
 import com.pracas.domain.model.Parametres;
 import com.pracas.presentation.CtrlPresentation;
 
-/**
- *
- * @author arkey
- */
 public class MainFrame {
 	
     private static CtrlPresentation cp;

@@ -10,10 +10,6 @@ import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-/**
- *
- * @author arkey
- */
 public class CrearPartidaFrame extends javax.swing.JFrame {
 
 	private CtrlPresentation cp;

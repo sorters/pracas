@@ -3,6 +3,9 @@ package com.pracas.domain.controller;
 import java.util.List;
 import com.pracas.domain.model.Partida;
 
+/*
+ * Interfície del controlador de Partida
+ */
 public interface ICtrlPartida {
 
 	public Partida getPartida(int idPartida);

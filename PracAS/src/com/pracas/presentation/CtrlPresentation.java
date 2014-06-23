@@ -19,19 +19,25 @@ import com.pracas.exception.UserIsNotPlayerException;
 import com.pracas.exception.UsernameNotExistsException;
 import com.pracas.exception.WrongPasswordException;
 
-/**
- *
- * @author arkey
+/*
+ * Controlador de Presentació:
+ * Connecta la capa de presentació amb la de negoci.
+ * Aquest controlador es passa a cada vista per permetre que la vista invoqui 
+ * de manera directa via el controlador els events de domini. 
  */
 public class CtrlPresentation {
     
     private static CtrlJugarPartida cjp;
 
+    // Vista d'autenticació
     private LoginFrame loginFrame;
+    // Vista de Selecció d'opció
     private SeleccionarFrame seleccionarFrame;
+    // Vista de Creació de partida (a partir de Categoria de paraules seleccionada)
     private CrearPartidaFrame crearPartidaFrame;
+    // Vista de la Partida
     private PartidaFrame partidaFrame;
-    
+    // Diàleg de missatges
     private MessageFrame messageFrame;
     
     public CtrlPresentation() {
@@ -45,28 +51,28 @@ public class CtrlPresentation {
         messageFrame = new MessageFrame();
     }
     
+    /* Invocadores de les vistes */
     public void showLogin() {
     	loginFrame.setVisible(true);
     }
-    
     public void showSeleccionar() {
     	seleccionarFrame.setVisible(true);
     }
-    
     public void showCrearPartida() {
     	crearPartidaFrame.setVisible(true);
     }
-    
     public void showPartida(int numCaselles) {
     	partidaFrame.setNumCaselles(numCaselles);
     	partidaFrame.setVisible(true);
     }
-    
     public void showMessage(String msg, boolean endOnClose, JFrame parent) {
     	messageFrame.configMessage(msg, endOnClose, parent);
     	messageFrame.setVisible(true);
     }
     
+    /*
+     * Event de Acceptar autenticació.
+     */
     public void OKPressedAuthenticate(String username, String password) {
         try {
             cjp.authenticate(username, password);
@@ -85,6 +91,9 @@ public class CtrlPresentation {
         }
     }
     
+    /*
+     * Event d'intent de jugada.
+     */
     public void OKPressedPartida(int pos, char lletra) {
     	try {
 			JugadaResponseType info = cjp.ferJugada(pos, lletra);
@@ -112,6 +121,9 @@ public class CtrlPresentation {
 		}
     }
     
+    /*
+     * Event d'acceptació d'opcions (Només s'ofereix Jugar partida)
+     */
     public void OKPressedSeleccionar() {
     	try {
 			List<String> categories = cjp.obtenirCategories();
@@ -124,6 +136,10 @@ public class CtrlPresentation {
 		}
     }
     
+    /*
+     * Event d'acceptació de selecció de Categoria de paraules
+     * i posterior creació de la Partida.
+     */
     public void OKPressedCrearPartida(String _category) {
     	try {
 			DadesInicialsResponseType dirt = cjp.crearPartida(_category);
@@ -135,12 +151,19 @@ public class CtrlPresentation {
 		}
     }
     
+    /*
+     * Event d'aturada de Partida desde la Partida en curs.
+     */
     public void AturarPressedPartida(JFrame frame) {
     	cjp.aturarPartida();
     	String msg = "La partida ha estat guardada."; 
 		showMessage(msg, true, partidaFrame);
     }
     
+    /*
+     * Event de cancelació en qualsevol estadi del cas d'ús (Excepte en
+     * una Partida en curs).
+     */
     public void CancelPressedPartida(JFrame frame) {
     	frame.dispose();
     	System.exit(0);

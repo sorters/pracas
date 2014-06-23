@@ -10,10 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-/**
- *
- * @author arkey
- */
 public class MessageFrame extends JFrame {
 	
 	private static final double relacio = 1.618034;
@@ -46,10 +42,6 @@ public class MessageFrame extends JFrame {
     	endOnClose = _endOncLose;
     	parent = _parent;
     }
-    
-    /*public void setMessage(String msg) {
-    	textMsg.setText(msg);
-    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.

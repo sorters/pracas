@@ -27,8 +27,4 @@ public class Paraula {
 		return nombreLletres;
 	}
 	
-
-
-	
-	
 }

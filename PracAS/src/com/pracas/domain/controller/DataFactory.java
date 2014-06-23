@@ -9,6 +9,15 @@ import com.pracas.persistence.CtrlParaulaDB;
 import com.pracas.persistence.CtrlPartidaDB;
 import com.pracas.persistence.CtrlUsuariRegistratDB;
 
+/*
+ *  Classe DataFactory (Singleton)
+ *  Conté i serveix els controladors d'accés a dades especificats en els diagrames.
+ *  
+ *  Observacions/Modificacions:
+ *  Tots els controladors són singleton. Tot i que al diagrama no s'explicitava que 
+ *  ho fossin, per temes pràctics s'han implementat així, ja que no entra en conflicte
+ *  amb el disseny.
+ */
 public class DataFactory {
 
 	private static DataFactory ctrlDataFactory = null;

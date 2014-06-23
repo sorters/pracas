@@ -8,6 +8,12 @@ import com.pracas.domain.model.Paraula;
 import com.pracas.domain.model.UsuariRegistrat;
 import com.pracas.persistence.PersistenceSessionFactory;
 
+/*
+ * Implementació auxiliar d'un stub per a omplir la BD en un estat que permeti
+ * fer una demostració amb sentit del cas d'ús Jugar Partida.
+ * 
+ * Aquesta classe és auxiliar i per tant no figura a l'especificació.
+ */
 public class DataCreatorStub {
 
 	public void execute() {

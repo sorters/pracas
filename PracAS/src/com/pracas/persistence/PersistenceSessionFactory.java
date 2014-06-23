@@ -6,6 +6,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+/*
+ * Creadora de sessions de la capa de persistència automàtica.
+ * De manera aproximada, es podria considerar aquesta classe interioritzada en l'element
+ * que al disseny apareix com a Persistence Generator.
+ */
 public class PersistenceSessionFactory {
 	
 	private static PersistenceSessionFactory persistenceSessionFactory = null;

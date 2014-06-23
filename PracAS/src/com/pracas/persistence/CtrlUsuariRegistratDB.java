@@ -25,7 +25,6 @@ public class CtrlUsuariRegistratDB implements ICtrlUsuariRegistrat {
 
 	@Override
 	public Set<UsuariRegistrat> getAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
